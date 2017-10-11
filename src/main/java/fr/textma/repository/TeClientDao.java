@@ -4,13 +4,15 @@ package fr.textma.repository;
 import fr.textma.model.TeClient;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
 
 public interface TeClientDao extends JpaRepository<TeClient, Integer> {
 
     TeClient findById(int id);
 
-    List<TeClient> findByName(String name);
+//    Page<TeClient> findByName(String name, Pageable pageable);
+//
+//
+//    @Query("select tc from TeClient teClient where teClient.name like concat('%', :name, '%')")
+//    List<TeClient> findAllByLikeName(@Param("name") String name, Pageable pageable);
 }
 

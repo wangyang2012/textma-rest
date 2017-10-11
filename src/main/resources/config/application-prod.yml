@@ -74,7 +74,7 @@ liquibase:
 #        keyAlias: textma
 # ===================================================================
 server:
-    port: 8181
+    port: 9191
     compression:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json

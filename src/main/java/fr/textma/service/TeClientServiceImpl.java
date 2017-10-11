@@ -4,10 +4,10 @@ import fr.textma.model.TeClient;
 import fr.textma.repository.TeClientDao;
 import liquibase.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 
 @Service("teClientService")
@@ -22,11 +22,12 @@ public class TeClientServiceImpl implements TeClientService{
 		return dao.findById(id);
 	}
 
-	public List<TeClient> findByName(String name) {
+	public Page<TeClient> findByName(String name, Pageable pageable) {
 	    if (StringUtils.isEmpty(name)) {
-	        return dao.findAll();
+	    	return dao.findAll(pageable);
         } else {
-	        return dao.findByName(name);
+//	        return dao.findByName(name, pageable);
+			return null;
         }
 	}
 }

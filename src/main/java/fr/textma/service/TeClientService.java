@@ -2,8 +2,8 @@ package fr.textma.service;
 
 
 import fr.textma.model.TeClient;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 
 public interface TeClientService {
@@ -11,6 +11,6 @@ public interface TeClientService {
 
 	TeClient findById(int id);
 
-	List<TeClient> findByName(String name);
+	Page<TeClient> findByName(String name, Pageable pageable);
 
 }
