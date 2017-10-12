@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 public interface TeClientService {
 
 
-	TeClient findById(int id);
+	TeClient findById(Integer id);
 
 	Page<TeClient> findByName(String name, Pageable pageable);
 

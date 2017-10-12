@@ -17,9 +17,8 @@ public class TeClientServiceImpl implements TeClientService{
 	@Autowired
 	private TeClientDao dao;
 
-
-	public TeClient findById(int id) {
-		return dao.findById(id);
+	public TeClient findById(Integer id) {
+		return dao.findOne(id);
 	}
 
 	public Page<TeClient> findByName(String name, Pageable pageable) {

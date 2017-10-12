@@ -30,4 +30,10 @@ public class TeClientRestSource {
 		Page<TeClient> clients = teClientService.findByName("", pageable);
 		return new WebixDatatableResponse<TeClient>(clients, start);
 	}
+
+	@GetMapping(value = "/teClients/{id}")
+	public TeClient getClientById(@PathVariable Integer id) {
+		TeClient client = teClientService.findById(id);
+		return client;
+	}
 }

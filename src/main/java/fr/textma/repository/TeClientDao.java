@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TeClientDao extends JpaRepository<TeClient, Integer> {
 
-    TeClient findById(int id);
+//    TeClient findById(Integer id);
 
 //    Page<TeClient> findByName(String name, Pageable pageable);
 //
