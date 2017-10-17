@@ -10,26 +10,29 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
+import java.util.Map;
+
 
 @RestController
 @RequestMapping("/textma")
-@CrossOrigin(origins = "*")
-public class TeClientRestSource {
+	@CrossOrigin(origins = "*")
+	public class TeClientRestSource {
 
-	@Autowired
-    TeClientService teClientService;
+		@Autowired
+		TeClientService teClientService;
 
-	@Autowired
-	MessageSource messageSource;
+		@Autowired
+		MessageSource messageSource;
 
 
-	@GetMapping(value = "/teClients")
-	public WebixDatatableResponse<TeClient> listTeClients(@RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start) {
-		Integer page = start / count;
-		Pageable pageable = new PageRequest(page, count);
-		Page<TeClient> clients = teClientService.findByName("", pageable);
-		return new WebixDatatableResponse<TeClient>(clients, start);
-	}
+		@GetMapping(value = "/teClients")
+		public WebixDatatableResponse<TeClient> listTeClients(@RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
+			Integer page = start / count;
+			Pageable pageable = new PageRequest(page, count);
+			Page<TeClient> clients = teClientService.findByName("", filter, pageable);
+			return new WebixDatatableResponse<TeClient>(clients, start);
+		}
 
 	@GetMapping(value = "/teClients/{id}")
 	public TeClient getClientById(@PathVariable Integer id) {
