@@ -13,6 +13,6 @@ public interface TeClientService {
 
 	TeClient findById(Integer id);
 
-	Page<TeClient> findByName(String name, Map<String, String> filter, Pageable pageable);
+	Page<TeClient> getClientWithFilters(Map<String, String> filter, Pageable pageable);
 
 }

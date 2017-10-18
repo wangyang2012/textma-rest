@@ -23,12 +23,21 @@ public class TeClientServiceImpl implements TeClientService{
 		return dao.findOne(id);
 	}
 
-	public Page<TeClient> findByName(String name, Map<String, String> filter, Pageable pageable) {
-	    if (StringUtils.isEmpty(name)) {
+	public Page<TeClient> getClientWithFilters(Map<String, String> filter, Pageable pageable) {
+		String name = filter.get("filter[name]");
+		String strId = filter.get("filter[id]");
+		Integer id = null;
+		if (!StringUtils.isEmpty(strId)) {
+			id = Integer.valueOf(strId);
+		}
+
+		if (id != null) {
+			return dao.findById(id, pageable);
+		} else if (!StringUtils.isEmpty(name)) {
+			return dao.findByNameLike("%"+name+"%", pageable);
+		} else if (StringUtils.isEmpty(name) && id == null) {
 	    	return dao.findAll(pageable);
-        } else {
-//	        return dao.findByName(name, pageable);
-			return null;
         }
+        return null;
 	}
 }
