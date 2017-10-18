@@ -25,7 +25,7 @@ public class TeClientServiceImpl implements TeClientService{
 
 	public Page<TeClient> findByName(String name, Map<String, String> filter, Pageable pageable) {
 	    if (StringUtils.isEmpty(name)) {
-//	    	return dao.findAll(pageable);
+	    	return dao.findAll(pageable);
         } else {
 //	        return dao.findByName(name, pageable);
 			return null;
