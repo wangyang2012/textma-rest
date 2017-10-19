@@ -15,4 +15,6 @@ public interface TeClientService {
 
 	Page<TeClient> getClientWithFilters(Map<String, String> filter, Pageable pageable);
 
+	void update(TeClient client);
+
 }

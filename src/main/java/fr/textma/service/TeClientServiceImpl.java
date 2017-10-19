@@ -40,4 +40,9 @@ public class TeClientServiceImpl implements TeClientService{
         }
         return null;
 	}
+
+	@Override
+	public void update(TeClient client) {
+		dao.save(client);
+	}
 }

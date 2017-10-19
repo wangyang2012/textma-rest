@@ -59,4 +59,16 @@ import java.util.Map;
 		TeClient client = teClientService.findById(id);
 		return client;
 	}
+
+	@RequestMapping(value = "/teClients/{id}", method = RequestMethod.POST)
+	public @ResponseBody String updateClient(@RequestBody TeClient client){
+			teClientService.update(client);
+		return "ok";
+	}
+
+	@RequestMapping(value = "/teClients", method = RequestMethod.POST)
+	public @ResponseBody String updateClientWithoutId(@RequestBody TeClient client){
+		teClientService.update(client);
+		return "ok";
+	}
 }
