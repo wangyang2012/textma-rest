@@ -2,7 +2,6 @@ package fr.textma.web.rest;
 
 import fr.textma.model.TeClient;
 import fr.textma.model.WebixDatatableResponse;
-import fr.textma.model.WebixSort;
 import fr.textma.service.TeClientService;
 import liquibase.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

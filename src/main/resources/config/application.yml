@@ -35,6 +35,17 @@ spring:
         name: textma
     jackson:
         serialization.write_dates_as_timestamps: false
+    datasource:
+            type: com.zaxxer.hikari.HikariDataSource
+            url: jdbc:mysql://localhost:3306/textma?useUnicode=true&characterEncoding=utf8&useSSL=false
+            username: root
+            password:
+            hikari:
+                data-source-properties:
+                    cachePrepStmts: true
+                    prepStmtCacheSize: 250
+                    prepStmtCacheSqlLimit: 2048
+                    useServerPrepStmts: true
     jpa:
         open-in-view: false
         hibernate:
@@ -58,6 +69,7 @@ server:
     session:
         cookie:
             http-only: true
+    port: 9090
 
 info:
     project:
