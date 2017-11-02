@@ -28,7 +28,7 @@ import java.util.Map;
 
 
 		@GetMapping(value = "/teClients")
-		public WebixDatatableResponse<TeClient> listTeClients(@RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
+		public WebixDatatableResponse<TeClient> listTeClients(@RequestParam(defaultValue = "", required = false) String search, @RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
 			Integer page = start / count;
 
 			String sortId = filter.get("sort[id]");
@@ -49,7 +49,7 @@ import java.util.Map;
 			}
 
 			Pageable pageable = new PageRequest(page, count, sort);
-			Page<TeClient> clients = teClientService.getClientWithFilters(filter, pageable);
+			Page<TeClient> clients = teClientService.searchClients(search, pageable);
 			return new WebixDatatableResponse<TeClient>(clients, start);
 		}
 
