@@ -28,7 +28,7 @@ public class TeClientServiceImpl implements TeClientService{
 			return dao.findAll(pageable);
 		}
 
-		return dao.findByNameLike("%"+search+"%", pageable);
+		return dao.findByNomLike("%"+search+"%", pageable);
 	}
 
 	@Override

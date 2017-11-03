@@ -1,6 +1,7 @@
 package fr.textma.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="te_client_cli")
@@ -10,20 +11,46 @@ public class TeClient {
     @Column(name="cli_id")
     private Integer id;
 
-    @Column(name="cli_societe")
-    private String name;
+    @Column(name="cli_bloque")
+    private Boolean bloque;
 
-    @Column(name="cli_siret")
-    private String siret;
+    @Column(name="cli_ferme")
+    private Boolean ferme;
+
+    @Column(name="cli_datemodification")
+    private Date derniereModification;
+
+    @Column(name="cli_codeclient")
+    private Integer codeClient;
+
+    @Column(name="cli_societe")
+    private String nom;
 
     @Column(name="cli_adresse")
-    private String address;
+    private String addresse;
 
     @Column(name="cli_codepostal")
     private String codePostal;
 
     @Column(name="cli_ville")
     private String ville;
+
+    @Column(name="cli_telephone")
+    private String telephone;
+
+    @Column(name="cli_siret")
+    private String siret;
+
+    @Column(name="cli_email3")
+    private String rcs;
+
+    @ManyToOne
+    @JoinColumn(name = "cli_clf_id")
+    private TeFamilleClient famille;
+
+    @ManyToOne
+    @JoinColumn(name = "cli_mpa_id")
+    private TsModePaiement modePaiement;
 
     public Integer getId() {
         return id;
@@ -33,28 +60,52 @@ public class TeClient {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Boolean getBloque() {
+        return bloque;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBloque(Boolean bloque) {
+        this.bloque = bloque;
     }
 
-    public String getSiret() {
-        return siret;
+    public Boolean getFerme() {
+        return ferme;
     }
 
-    public void setSiret(String siret) {
-        this.siret = siret;
+    public void setFerme(Boolean ferme) {
+        this.ferme = ferme;
     }
 
-    public String getAddress() {
-        return address;
+    public Date getDerniereModification() {
+        return derniereModification;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setDerniereModification(Date derniereModification) {
+        this.derniereModification = derniereModification;
+    }
+
+    public Integer getCodeClient() {
+        return codeClient;
+    }
+
+    public void setCodeClient(Integer codeClient) {
+        this.codeClient = codeClient;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getAddresse() {
+        return addresse;
+    }
+
+    public void setAddresse(String addresse) {
+        this.addresse = addresse;
     }
 
     public String getCodePostal() {
@@ -71,5 +122,45 @@ public class TeClient {
 
     public void setVille(String ville) {
         this.ville = ville;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getSiret() {
+        return siret;
+    }
+
+    public void setSiret(String siret) {
+        this.siret = siret;
+    }
+
+    public String getRcs() {
+        return rcs;
+    }
+
+    public void setRcs(String rcs) {
+        this.rcs = rcs;
+    }
+
+    public TeFamilleClient getFamille() {
+        return famille;
+    }
+
+    public void setFamille(TeFamilleClient famille) {
+        this.famille = famille;
+    }
+
+    public TsModePaiement getModePaiement() {
+        return modePaiement;
+    }
+
+    public void setModePaiement(TsModePaiement modePaiement) {
+        this.modePaiement = modePaiement;
     }
 }

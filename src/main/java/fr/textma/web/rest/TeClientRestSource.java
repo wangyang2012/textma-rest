@@ -31,20 +31,20 @@ import java.util.Map;
 		public WebixDatatableResponse<TeClient> listTeClients(@RequestParam(defaultValue = "", required = false) String search, @RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
 			Integer page = start / count;
 
-			String sortId = filter.get("sort[id]");
-			String sortName = filter.get("sort[name]");
+			String sortCode = filter.get("sort[code]");
+			String sortNom = filter.get("sort[nom]");
 			Sort sort = null;
-			if (!StringUtils.isEmpty(sortId)) {
-				if ("asc".equals(sortId)) {
-					sort = new Sort(Sort.Direction.ASC, "id");
+			if (!StringUtils.isEmpty(sortCode)) {
+				if ("asc".equals(sortCode)) {
+					sort = new Sort(Sort.Direction.ASC, "code");
 				} else {
-					sort = new Sort(Sort.Direction.DESC, "id");
+					sort = new Sort(Sort.Direction.DESC, "code");
 				}
-			} else if (!StringUtils.isEmpty(sortName)) {
-				if ("asc".equals(sortName)) {
-					sort = new Sort(Sort.Direction.ASC, "name");
+			} else if (!StringUtils.isEmpty(sortNom)) {
+				if ("asc".equals(sortNom)) {
+					sort = new Sort(Sort.Direction.ASC, "nom");
 				} else {
-					sort = new Sort(Sort.Direction.DESC, "name");
+					sort = new Sort(Sort.Direction.DESC, "nom");
 				}
 			}
 
