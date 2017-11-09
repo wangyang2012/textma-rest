@@ -12,8 +12,8 @@ public class TeFacture {
     @Column(name="fac_id")
     private Integer id;
 
-    @Column(name="fac_cli_id")
-    private Integer clientId;
+//    @Column(name="fac_cli_id")
+//    private Integer clientId;
 
     @Column(name="fac_numfacture")
     private String numeroFacture;
@@ -38,6 +38,10 @@ public class TeFacture {
 
     @Column(name="fac_totalttc")
     private BigDecimal totalTtc;
+
+    @ManyToOne()
+    @JoinColumn(name = "fac_cli_id", nullable = false)
+    private TeClient client;
 
     public Integer getId() {
         return id;
@@ -109,5 +113,21 @@ public class TeFacture {
 
     public void setTotalTtc(BigDecimal totalTtc) {
         this.totalTtc = totalTtc;
+    }
+
+//    public Integer getClientId() {
+//        return clientId;
+//    }
+//
+//    public void setClientId(Integer clientId) {
+//        this.clientId = clientId;
+//    }
+
+    public TeClient getClient() {
+        return client;
+    }
+
+    public void setClient(TeClient client) {
+        this.client = client;
     }
 }

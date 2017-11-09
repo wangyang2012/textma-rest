@@ -1,6 +1,7 @@
 package fr.textma.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="te_client_cli")
@@ -24,6 +25,11 @@ public class TeClient {
 
     @Column(name="cli_ville")
     private String ville;
+
+    @OneToMany(mappedBy = "client")
+    private List<TeFacture> factures;
+
+//    private BigDecimal totalFacture;
 
     public Integer getId() {
         return id;
@@ -71,5 +77,21 @@ public class TeClient {
 
     public void setVille(String ville) {
         this.ville = ville;
+    }
+
+//    public BigDecimal getTotalFacture() {
+//        return totalFacture;
+//    }
+//
+//    public void setTotalFacture(BigDecimal totalFacture) {
+//        this.totalFacture = totalFacture;
+//    }
+
+    public List<TeFacture> getFactures() {
+        return factures;
+    }
+
+    public void setFactures(List<TeFacture> factures) {
+        this.factures = factures;
     }
 }
