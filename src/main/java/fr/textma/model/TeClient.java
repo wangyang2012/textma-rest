@@ -1,11 +1,11 @@
 package fr.textma.model;
 
+import org.hibernate.annotations.Formula;
+
 import javax.persistence.*;
-<<<<<<< HEAD
-import java.util.List;
-=======
+import java.math.BigDecimal;
 import java.util.Date;
->>>>>>> 54c650749c5b3de02d828e8b512057234a99c311
+import java.util.List;
 
 @Entity
 @Table(name="te_client_cli")
@@ -39,12 +39,6 @@ public class TeClient {
     @Column(name="cli_ville")
     private String ville;
 
-<<<<<<< HEAD
-    @OneToMany(mappedBy = "client")
-    private List<TeFacture> factures;
-
-//    private BigDecimal totalFacture;
-=======
     @Column(name="cli_telephone")
     private String telephone;
 
@@ -61,7 +55,12 @@ public class TeClient {
     @ManyToOne
     @JoinColumn(name = "cli_mpa_id")
     private TsModePaiement modePaiement;
->>>>>>> 54c650749c5b3de02d828e8b512057234a99c311
+
+    @OneToMany(mappedBy = "client")
+    private List<TeFacture> factures;
+
+    @Formula("(select COALESCE(sum(fac.fac_totalttc), 0) from te_facture_fac fac where fac.fac_cli_id=cli_id)")
+    private BigDecimal totalFacture;
 
     public Integer getId() {
         return id;
@@ -135,22 +134,6 @@ public class TeClient {
         this.ville = ville;
     }
 
-<<<<<<< HEAD
-//    public BigDecimal getTotalFacture() {
-//        return totalFacture;
-//    }
-//
-//    public void setTotalFacture(BigDecimal totalFacture) {
-//        this.totalFacture = totalFacture;
-//    }
-
-    public List<TeFacture> getFactures() {
-        return factures;
-    }
-
-    public void setFactures(List<TeFacture> factures) {
-        this.factures = factures;
-=======
     public String getTelephone() {
         return telephone;
     }
@@ -185,10 +168,25 @@ public class TeClient {
 
     public TsModePaiement getModePaiement() {
         return modePaiement;
-    }
+}
 
     public void setModePaiement(TsModePaiement modePaiement) {
         this.modePaiement = modePaiement;
->>>>>>> 54c650749c5b3de02d828e8b512057234a99c311
+    }
+
+    public List<TeFacture> getFactures() {
+        return factures;
+    }
+
+    public void setFactures(List<TeFacture> factures) {
+        this.factures = factures;
+    }
+
+    public BigDecimal getTotalFacture() {
+        return totalFacture;
+    }
+
+    public void setTotalFacture(BigDecimal totalFacture) {
+        this.totalFacture = totalFacture;
     }
 }
