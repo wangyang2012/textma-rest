@@ -12,14 +12,9 @@ public class TeFacture {
     @Column(name="fac_id")
     private Integer id;
 
-<<<<<<< HEAD
     @ManyToOne()
     @JoinColumn(name = "fac_cli_id")
     private TeClient client;
-=======
-//    @Column(name="fac_cli_id")
-//    private Integer clientId;
->>>>>>> master
 
     @Column(name="fac_numfacture")
     private String numeroFacture;
@@ -44,10 +39,6 @@ public class TeFacture {
 
     @Column(name="fac_totalttc")
     private BigDecimal totalTtc;
-
-    @ManyToOne()
-    @JoinColumn(name = "fac_cli_id", nullable = false)
-    private TeClient client;
 
     public Integer getId() {
         return id;
@@ -121,17 +112,6 @@ public class TeFacture {
         this.totalTtc = totalTtc;
     }
 
-<<<<<<< HEAD
-=======
-//    public Integer getClientId() {
-//        return clientId;
-//    }
-//
-//    public void setClientId(Integer clientId) {
-//        this.clientId = clientId;
-//    }
-
->>>>>>> master
     public TeClient getClient() {
         return client;
     }
