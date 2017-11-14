@@ -55,6 +55,7 @@ public class TeClientRestSource {
         String bloque = filter.get("sort[bloque]");
         String ferme = filter.get("sort[ferme]");
         String derniereModification = filter.get("sort[derniereModification]");
+        String totalFacture = filter.get("sort[totalFacture]");
         String codeClient = filter.get("sort[codeClient]");
         String nom = filter.get("sort[nom]");
         String siret = filter.get("sort[siret]");
@@ -84,6 +85,12 @@ public class TeClientRestSource {
                 sort = new Sort(Sort.Direction.ASC, "derniereModification");
             } else {
                 sort = new Sort(Sort.Direction.DESC, "derniereModification");
+            }
+        } else if (!StringUtils.isEmpty(totalFacture)) {
+            if ("asc".equals(codeClient)) {
+                sort = new Sort(Sort.Direction.ASC, "totalFacture");
+            } else {
+                sort = new Sort(Sort.Direction.DESC, "totalFacture");
             }
         } else if (!StringUtils.isEmpty(codeClient)) {
             if ("asc".equals(codeClient)) {
@@ -145,6 +152,8 @@ public class TeClientRestSource {
             } else {
                 sort = new Sort(Sort.Direction.DESC, "ville");
             }
+        } else {
+            sort = new Sort(Sort.Direction.DESC, "totalFacture");
         }
         return sort;
     }
