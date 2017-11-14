@@ -31,7 +31,7 @@ public class TeClient {
     private String nom;
 
     @Column(name="cli_adresse")
-    private String addresse;
+    private String adresse;
 
     @Column(name="cli_codepostal")
     private String codePostal;
@@ -110,12 +110,12 @@ public class TeClient {
         this.nom = nom;
     }
 
-    public String getAddresse() {
-        return addresse;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public void setAddresse(String addresse) {
-        this.addresse = addresse;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public String getCodePostal() {

@@ -9,8 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Map;
-
 
 @Service("teClientService")
 @Transactional
@@ -28,7 +26,7 @@ public class TeClientServiceImpl implements TeClientService{
 			return dao.findAll(pageable);
 		}
 
-		return dao.findByNomLike("%"+search+"%", pageable);
+		return dao.findByNomLikeOrAdresseLikeOrVilleLike("%"+search+"%", "%"+search+"%", "%"+search+"%", pageable);
 	}
 
 	@Override

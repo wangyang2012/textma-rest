@@ -12,6 +12,7 @@ public interface TeClientDao extends CrudRepository<TeClient, Integer> {
     Page<TeClient> findAll(Pageable pageable);
     Page<TeClient> findById(Integer id, Pageable pageable);
     Page<TeClient> findByNomLike(String nom, Pageable pageable);
+    Page<TeClient> findByNomLikeOrAdresseLikeOrVilleLike(String nom, String adresse, String ville, Pageable pageable);
 
     /*select * from te_client_cli client left join
     (SELECT fac_cli_id, sum(fac_totalttc) facture_total, count(*) facture_number FROM textma.te_facture_fac where YEAR(fac_datecreation) = YEAR(CURDATE()) group by fac_cli_id) fac
