@@ -152,9 +152,12 @@ public class TeClientRestSource {
             } else {
                 sort = new Sort(Sort.Direction.DESC, "ville");
             }
-        } else {
-            sort = new Sort(Sort.Direction.DESC, "totalFacture");
+//        } else {
+//            sort = new Sort(Sort.Direction.DESC, "totalFacture");
         }
+//        if (filter.sortByTotalFacture) {
+//            sort = new Sort(Sort.Direction.DESC, "totalFacture");
+//        }
         return sort;
     }
 }
