@@ -59,7 +59,7 @@ public class TeClient {
     @OneToMany(mappedBy = "client")
     private List<TeFacture> factures;
 
-    @Formula("(select COALESCE(sum(fac.fac_totalttc), 0) from te_facture_fac fac where fac.fac_cli_id=cli_id)")
+    @Formula("(select COALESCE(sum(fac.fac_totalttc), 0) from te_facture_fac fac where fac.fac_cli_id=cli_id and YEAR(fac.fac_datecreation) = YEAR(CURDATE()))")
     private BigDecimal totalFacture;
 
     public Integer getId() {
