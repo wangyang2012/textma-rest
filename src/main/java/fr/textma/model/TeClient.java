@@ -59,6 +59,14 @@ public class TeClient {
     @OneToMany(mappedBy = "client")
     private List<TeFacture> factures;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "tj_liaisonclient_lic",
+            joinColumns = @JoinColumn(name = "lic_climereid"),
+            inverseJoinColumns = @JoinColumn(name = "lic_clifilsid")
+    )
+    private List<TeClient> sousClients;
+
     @Formula("(select COALESCE(sum(fac.fac_totalttc), 0) from te_facture_fac fac where fac.fac_cli_id=cli_id and YEAR(fac.fac_datecreation) = YEAR(CURDATE()))")
     private BigDecimal totalFacture;
 
@@ -188,5 +196,13 @@ public class TeClient {
 
     public void setTotalFacture(BigDecimal totalFacture) {
         this.totalFacture = totalFacture;
+    }
+
+    public List<TeClient> getSousClients() {
+        return sousClients;
+    }
+
+    public void setSousClients(List<TeClient> sousClients) {
+        this.sousClients = sousClients;
     }
 }
