@@ -1,4 +1,4 @@
-package fr.textma.web.rest;
+package fr.textma.web.rest.client;
 
 import fr.textma.model.TeClient;
 import fr.textma.model.WebixDatatableResponse;
@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -42,6 +43,12 @@ public class TeClientRestSource {
     public TeClient getClientById(@PathVariable Integer id) {
         TeClient client = teClientService.findById(id);
         return client;
+    }
+
+
+    @GetMapping(value = "/teClients/sous-client/{id}")
+    public List<TeClient> getSousClientsById(@PathVariable Integer id) {
+        return teClientService.getSousClients(id);
     }
 
     @RequestMapping(value = "/teClients/{id}", method = RequestMethod.POST)
