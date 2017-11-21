@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service("teClientService")
 @Transactional
@@ -32,5 +34,11 @@ public class TeClientServiceImpl implements TeClientService{
 	@Override
 	public void update(TeClient client) {
 		dao.save(client);
+	}
+
+	@Override
+	public List<TeClient> getSousClients(Integer id) {
+		TeClient client = findById(id);
+		return client.getSousClients();
 	}
 }
