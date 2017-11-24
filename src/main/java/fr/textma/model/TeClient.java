@@ -48,6 +48,9 @@ public class TeClient {
     @Column(name="cli_email3")
     private String rcs;
 
+    @Column(name="cli_observations")
+    private String observations;
+
     @ManyToOne
     @JoinColumn(name = "cli_clf_id")
     private TeFamilleClient famille;
@@ -204,5 +207,13 @@ public class TeClient {
 
     public void setSousClients(List<TeClient> sousClients) {
         this.sousClients = sousClients;
+    }
+
+    public String getObservations() {
+        return observations;
+    }
+
+    public void setObservations(String observations) {
+        this.observations = observations;
     }
 }
