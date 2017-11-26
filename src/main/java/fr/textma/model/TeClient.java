@@ -1,6 +1,7 @@
 package fr.textma.model;
 
 import org.hibernate.annotations.Formula;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -72,6 +73,17 @@ public class TeClient {
 
     @Formula("(select COALESCE(sum(fac.fac_totalttc), 0) from te_facture_fac fac where fac.fac_cli_id=cli_id and YEAR(fac.fac_datecreation) = YEAR(CURDATE()))")
     private BigDecimal totalFacture;
+
+    @Transient
+    private String codepostal;
+
+    public String getCodepostal() {
+        return codePostal;
+    }
+
+    public void setCodepostal(String codepostal) {
+        this.codepostal = codepostal;
+    }
 
     public Integer getId() {
         return id;
