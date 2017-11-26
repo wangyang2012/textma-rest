@@ -35,54 +35,27 @@ public class TeAdresseRestSource {
 
     private Sort getSortInfo(@RequestParam(required = false) Map<String, String> filter) {
 
-        String civilite = filter.get("sort[civilite]");
-        String nom = filter.get("sort[nom]");
-        String prenom = filter.get("sort[prenom]");
-        String fonction = filter.get("sort[fonction]");
-        String email = filter.get("sort[email]");
-        String portable = filter.get("sort[portable]");
+        String nomSociete = filter.get("sort[nomSociete]");
+        String adresse = filter.get("sort[adresse]");
+        String codePostal = filter.get("sort[codePostal]");
         String telephone = filter.get("sort[telephone]");
         String fax = filter.get("sort[fax]");
-        String facturation = filter.get("sort[facturation]");
-        String logistique = filter.get("sort[logistique]");
-        String commercial = filter.get("sort[commercial]");
+        String email = filter.get("sort[email]");
+        String ville = filter.get("sort[ville]");
+        String observations = filter.get("sort[observations]");
 
         Sort sort = null;
-        if (!StringUtils.isEmpty(civilite)) {
-            if ("asc".equals(civilite)) {
-                sort = new Sort(Sort.Direction.ASC, "civilite");
+        if (!StringUtils.isEmpty(nomSociete)) {
+            if ("asc".equals(nomSociete)) {
+                sort = new Sort(Sort.Direction.ASC, "nomSociete");
             } else {
-                sort = new Sort(Sort.Direction.DESC, "civilite");
+                sort = new Sort(Sort.Direction.DESC, "nomSociete");
             }
-        } else if (!StringUtils.isEmpty(nom)) {
-            if ("asc".equals(nom)) {
-                sort = new Sort(Sort.Direction.ASC, "nom");
+        } else if (!StringUtils.isEmpty(adresse)) {
+            if ("asc".equals(adresse)) {
+                sort = new Sort(Sort.Direction.ASC, "adresse");
             } else {
-                sort = new Sort(Sort.Direction.DESC, "nom");
-            }
-        } else if (!StringUtils.isEmpty(prenom)) {
-            if ("asc".equals(prenom)) {
-                sort = new Sort(Sort.Direction.ASC, "prenom");
-            } else {
-                sort = new Sort(Sort.Direction.DESC, "prenom");
-            }
-        } else if (!StringUtils.isEmpty(fonction)) {
-            if ("asc".equals(fonction)) {
-                sort = new Sort(Sort.Direction.ASC, "fonction.nom");
-            } else {
-                sort = new Sort(Sort.Direction.DESC, "fonction.nom");
-            }
-        } else if (!StringUtils.isEmpty(email)) {
-            if ("asc".equals(email)) {
-                sort = new Sort(Sort.Direction.ASC, "email");
-            } else {
-                sort = new Sort(Sort.Direction.DESC, "email");
-            }
-        } else if (!StringUtils.isEmpty(portable)) {
-            if ("asc".equals(portable)) {
-                sort = new Sort(Sort.Direction.ASC, "portable");
-            } else {
-                sort = new Sort(Sort.Direction.DESC, "portable");
+                sort = new Sort(Sort.Direction.DESC, "adresse");
             }
         } else if (!StringUtils.isEmpty(telephone)) {
             if ("asc".equals(telephone)) {
@@ -96,20 +69,26 @@ public class TeAdresseRestSource {
             } else {
                 sort = new Sort(Sort.Direction.DESC, "fax");
             }
-        } else if (!StringUtils.isEmpty(facturation)) {
-            if ("asc".equals(facturation)) {
-                sort = new Sort(Sort.Direction.ASC, "facturation");
+        } else if (!StringUtils.isEmpty(email)) {
+            if ("asc".equals(email)) {
+                sort = new Sort(Sort.Direction.ASC, "email");
             } else {
-                sort = new Sort(Sort.Direction.DESC, "facturation");
+                sort = new Sort(Sort.Direction.DESC, "email");
             }
-        } else if (!StringUtils.isEmpty(logistique)) {
-            if ("asc".equals(logistique)) {
-                sort = new Sort(Sort.Direction.ASC, "logistique");
+        } else if (!StringUtils.isEmpty(ville)) {
+            if ("asc".equals(ville)) {
+                sort = new Sort(Sort.Direction.ASC, "ville");
             } else {
-                sort = new Sort(Sort.Direction.DESC, "logistique");
+                sort = new Sort(Sort.Direction.DESC, "ville");
+            }
+        } else if (!StringUtils.isEmpty(observations)) {
+            if ("asc".equals(observations)) {
+                sort = new Sort(Sort.Direction.ASC, "observations");
+            } else {
+                sort = new Sort(Sort.Direction.DESC, "observations");
             }
         } else {
-            sort = new Sort(Sort.Direction.ASC, "nom");
+            sort = new Sort(Sort.Direction.ASC, "nomSociete");
         }
         return sort;
     }

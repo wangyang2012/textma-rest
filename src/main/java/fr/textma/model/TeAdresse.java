@@ -35,7 +35,7 @@ public class TeAdresse {
     private String ville;
 
     @Column(name="adr_observations")
-    private Boolean observations;
+    private String observations;
 
 
     public Integer getId() {
@@ -110,11 +110,11 @@ public class TeAdresse {
         this.ville = ville;
     }
 
-    public Boolean getObservations() {
+    public String getObservations() {
         return observations;
     }
 
-    public void setObservations(Boolean observations) {
+    public void setObservations(String observations) {
         this.observations = observations;
     }
 }
