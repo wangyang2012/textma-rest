@@ -2,10 +2,8 @@ package fr.textma.web.rest.client;
 
 import fr.textma.model.TeClient;
 import fr.textma.model.TeContact;
-import fr.textma.model.Test;
 import fr.textma.model.WebixDatatableResponse;
 import fr.textma.service.TeContactService;
-import fr.textma.service.TestService;
 import liquibase.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

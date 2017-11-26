@@ -1,9 +1,7 @@
 package fr.textma.service;
 
 import fr.textma.model.TeContact;
-import fr.textma.model.Test;
 import fr.textma.repository.TeContactDao;
-import fr.textma.repository.TestDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
