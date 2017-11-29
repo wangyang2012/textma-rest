@@ -32,6 +32,11 @@ public class TeClientRestSource {
     public WebixDatatableResponse<TeClient> listTeClients(@RequestParam(defaultValue = "", required = false) String search, @RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
         Integer page = start / count;
 
+        String nomToFind = filter.get("filter[nom]");
+        if (StringUtils.isEmpty(search) && !StringUtils.isEmpty(nomToFind)) {
+            search = nomToFind;
+        }
+
         Sort sort = getSortInfo(filter);
 
         Pageable pageable = new PageRequest(page, count, sort);
