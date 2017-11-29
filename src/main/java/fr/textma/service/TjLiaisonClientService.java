@@ -16,4 +16,6 @@ public interface TjLiaisonClientService {
 
 	Page<TjLiaisonClient> findAll(Pageable pageable);
 
+	Page<TeClient> findAllClientMere(Pageable pageable);
+
 }

@@ -1,7 +1,6 @@
 package fr.textma.model;
 
 import org.hibernate.annotations.Formula;
-import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

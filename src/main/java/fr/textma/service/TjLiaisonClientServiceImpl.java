@@ -31,4 +31,9 @@ public class TjLiaisonClientServiceImpl implements TjLiaisonClientService {
 		return dao.findAll(pageable);
 	}
 
+	@Override
+	public Page<TeClient> findAllClientMere(Pageable pageable) {
+		return dao.findDistinctClientMere(pageable);
+	}
+
 }
