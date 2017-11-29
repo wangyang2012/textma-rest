@@ -70,14 +70,6 @@ public class TeClient {
     @Formula("(select COALESCE(sum(fac.fac_totalttc), 0) from te_facture_fac fac where fac.fac_cli_id=cli_id and YEAR(fac.fac_datecreation) = YEAR(CURDATE()))")
     private BigDecimal totalFacture;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "tj_liaisonclient_lic",
-            joinColumns = { @JoinColumn(name = "cli_id") },
-            inverseJoinColumns = { @JoinColumn(name = "lic_climereid") }
-    )
-    private List<TeClient> sousClients;
-
     public Integer getId() {
         return id;
     }
