@@ -120,3 +120,8 @@ jhipster:
 # ===================================================================
 
 application:
+
+endpoints:
+    enabled: true
+    info:
+        enabled: true
