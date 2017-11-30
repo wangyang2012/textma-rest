@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service("tjLiaisonClientService")
 @Transactional
@@ -23,8 +25,8 @@ public class TjLiaisonClientServiceImpl implements TjLiaisonClientService {
 	}
 
 	@Override
-	public Page<TjLiaisonClient> findByClientMere(TeClient clientMere, Pageable pageable) {
-		return dao.findByClientMere(clientMere, pageable);
+	public Page<TeClient> findByClientMere(Integer mereId, Pageable pageable) {
+		return dao.findByClientMere(mereId, pageable);
 	}
 
 	@Override

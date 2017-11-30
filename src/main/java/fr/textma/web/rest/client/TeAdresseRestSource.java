@@ -63,6 +63,12 @@ public class TeAdresseRestSource {
             } else {
                 sort = new Sort(Sort.Direction.DESC, "telephone");
             }
+        } else if (!StringUtils.isEmpty(codePostal)) {
+            if ("asc".equals(codePostal)) {
+                sort = new Sort(Sort.Direction.ASC, "codePostal");
+            } else {
+                sort = new Sort(Sort.Direction.DESC, "codePostal");
+            }
         } else if (!StringUtils.isEmpty(fax)) {
             if ("asc".equals(fax)) {
                 sort = new Sort(Sort.Direction.ASC, "fax");

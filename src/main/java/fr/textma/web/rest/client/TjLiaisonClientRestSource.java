@@ -38,16 +38,14 @@ public class TjLiaisonClientRestSource {
 
     // http://localhost:9090/textma/tjLiaisonClient?mereId=9
     @GetMapping(value = "/tjLiaisonClient")
-    public WebixDatatableResponse<TjLiaisonClient> listTjLiaisonClient(@RequestParam(defaultValue = "", required = false) Integer mereId, @RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
+    public WebixDatatableResponse<TeClient> listTjLiaisonClient(@RequestParam(defaultValue = "", required = false) Integer mereId, @RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
         Integer page = start / count;
 
         Sort sort = getSortInfo(filter);
 
         Pageable pageable = new PageRequest(page, count, sort);
-        TeClient clientMere = new TeClient();
-        clientMere.setId(mereId);
-        Page<TjLiaisonClient> clients = tjClientLiaisonService.findByClientMere(clientMere, pageable);
-        return new WebixDatatableResponse<TjLiaisonClient>(clients, start);
+        Page<TeClient> clients = tjClientLiaisonService.findByClientMere(mereId, pageable);
+        return new WebixDatatableResponse<TeClient>(clients, start);
     }
 
 

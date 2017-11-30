@@ -12,7 +12,7 @@ public interface TjLiaisonClientService {
 
 	TjLiaisonClient findById(Integer id);
 
-	Page<TjLiaisonClient> findByClientMere(TeClient clientMere, Pageable pageable);
+	Page<TeClient> findByClientMere(Integer mereId, Pageable pageable);
 
 	Page<TjLiaisonClient> findAll(Pageable pageable);
 
