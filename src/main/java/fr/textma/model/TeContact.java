@@ -10,8 +10,9 @@ public class TeContact {
     @Column(name="cot_id")
     private Integer id;
 
-    @Column(name="cot_cli_id")
-    private Integer clientId;
+    @ManyToOne
+    @JoinColumn(name = "cot_cli_id")
+    private TeClient client;
 
     @Column(name="cot_nom")
     private String nom;
@@ -55,12 +56,12 @@ public class TeContact {
         this.id = id;
     }
 
-    public Integer getClientId() {
-        return clientId;
+    public TeClient getClient() {
+        return client;
     }
 
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
+    public void setClient(TeClient client) {
+        this.client = client;
     }
 
     public String getNom() {
