@@ -28,7 +28,7 @@ public class TeContactRestSource {
         Integer page = start / count;
         Sort sort = getSortInfo(filter);
         Pageable pageable = new PageRequest(page, count, sort);
-        Page<TeContact> contacts = service.findAll(pageable);
+        Page<TeContact> contacts = service.search(search, pageable);
         return new WebixDatatableResponse<TeContact>(contacts, start);
     }
 
@@ -44,6 +44,7 @@ public class TeContactRestSource {
     private Sort getSortInfo(@RequestParam(required = false) Map<String, String> filter) {
 
         String civilite = filter.get("sort[civilite]");
+        String societe = filter.get("sort[societe]");
         String nom = filter.get("sort[nom]");
         String prenom = filter.get("sort[prenom]");
         String fonction = filter.get("sort[fonction]");
@@ -115,6 +116,12 @@ public class TeContactRestSource {
                 sort = new Sort(Sort.Direction.ASC, "logistique");
             } else {
                 sort = new Sort(Sort.Direction.DESC, "logistique");
+            }
+        } else if (!StringUtils.isEmpty(societe)) {
+            if ("asc".equals(societe)) {
+                sort = new Sort(Sort.Direction.ASC, "client.nom");
+            } else {
+                sort = new Sort(Sort.Direction.DESC, "client.nom");
             }
         } else {
             sort = new Sort(Sort.Direction.ASC, "nom");
