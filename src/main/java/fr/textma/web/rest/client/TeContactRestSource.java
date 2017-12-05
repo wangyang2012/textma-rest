@@ -23,8 +23,17 @@ public class TeContactRestSource {
     @Autowired
     TeContactService service;
 
+    @GetMapping(value = "/teContacts")
+    public WebixDatatableResponse<TeContact> search(@RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
+        Integer page = start / count;
+        Sort sort = getSortInfo(filter);
+        Pageable pageable = new PageRequest(page, count, sort);
+        Page<TeContact> contacts = service.findAll(pageable);
+        return new WebixDatatableResponse<TeContact>(contacts, start);
+    }
+
     @GetMapping(value = "/teContacts/{clientId}")
-    public WebixDatatableResponse<TeContact> listTeContacts(@PathVariable Integer clientId, @RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
+    public WebixDatatableResponse<TeContact> listTeContactsByClient(@PathVariable Integer clientId, @RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
         Integer page = start / count;
         Sort sort = getSortInfo(filter);
         Pageable pageable = new PageRequest(page, count, sort);

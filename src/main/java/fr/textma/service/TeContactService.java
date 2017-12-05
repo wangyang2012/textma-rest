@@ -8,6 +8,9 @@ import org.springframework.data.domain.Pageable;
 
 public interface TeContactService {
 
+	Page<TeContact> findAll(Pageable pageable);
+
+	Page<TeContact> search(String search, Pageable pageable);
 
 	Page<TeContact> findByClientId(Integer clientId, Pageable pageable);
 

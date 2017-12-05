@@ -17,6 +17,16 @@ public class TeContactServiceImpl implements TeContactService{
 	private TeContactDao dao;
 
 	@Override
+	public Page<TeContact> findAll(Pageable pageable) {
+		return dao.findAll(pageable);
+	}
+
+	@Override
+	public Page<TeContact> search(String search, Pageable pageable) {
+		return dao.search("%"+search+"%", pageable);
+	}
+
+	@Override
 	public Page<TeContact> findByClientId(Integer clientId, Pageable pageable) {
 		return dao.findByClientId(clientId, pageable);
 	}
