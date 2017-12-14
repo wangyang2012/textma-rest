@@ -3,6 +3,7 @@ package fr.textma.web.rest;
 import io.github.jhipster.config.JHipsterProperties;
 import fr.textma.TextmaApp;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -26,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  **/
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TextmaApp.class)
+@Ignore
 public class ProfileInfoResourceIntTest {
 
     @Mock

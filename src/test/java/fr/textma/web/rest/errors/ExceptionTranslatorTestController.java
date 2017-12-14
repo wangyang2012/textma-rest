@@ -1,5 +1,6 @@
 package fr.textma.web.rest.errors;
 
+import org.junit.Ignore;
 import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@Ignore
 public class ExceptionTranslatorTestController {
 
     @GetMapping("/test/concurrency-failure")

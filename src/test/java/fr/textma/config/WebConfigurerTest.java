@@ -8,8 +8,8 @@ import io.github.jhipster.config.JHipsterProperties;
 import io.undertow.Undertow;
 import io.undertow.Undertow.Builder;
 import io.undertow.UndertowOptions;
-import org.apache.commons.io.FilenameUtils;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
 import org.springframework.http.HttpHeaders;
@@ -22,7 +22,6 @@ import org.xnio.OptionMap;
 
 import javax.servlet.*;
 import java.util.*;
-
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
@@ -38,6 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * @see WebConfigurer
  */
+@Ignore
 public class WebConfigurerTest {
 
     private WebConfigurer webConfigurer;
