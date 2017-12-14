@@ -13,7 +13,8 @@ public class Article {
     @Column(name="art_id")
     private Integer id;
 
-    @Column(name="art_acl_id")
+    @ManyToOne
+    @JoinColumn(name="art_acl_id")
     private CollectionArticle collection;
 
     @Column(name="art_codearticle")
