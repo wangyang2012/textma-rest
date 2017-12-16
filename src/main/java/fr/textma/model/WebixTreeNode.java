@@ -4,7 +4,7 @@ import java.util.List;
 
 public class WebixTreeNode {
 
-    private Integer id;
+    private String id;
 
     private String value;
 
@@ -16,24 +16,24 @@ public class WebixTreeNode {
     public WebixTreeNode() {
     }
 
-    public WebixTreeNode(Integer id, String value, Boolean open) {
+    public WebixTreeNode(String id, String value, Boolean open) {
         this.id = id;
         this.value = value;
         this.open = open;
     }
 
-    public WebixTreeNode(Integer id, String value, Boolean open, List<WebixTreeNode> data) {
+    public WebixTreeNode(String id, String value, Boolean open, List<WebixTreeNode> data) {
         this.id = id;
         this.value = value;
         this.open = open;
         this.data = data;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
