@@ -1,6 +1,7 @@
 package fr.textma.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="te_artfamille_afa")
@@ -17,6 +18,9 @@ public class FamilleArticle {
     @ManyToOne
     @JoinColumn(name="afa_tst_id")
     private TypeStock typeStock;
+
+    @OneToMany(mappedBy = "famille")
+    private List<CollectionArticle> collections;
 
     public Integer getId() {
         return id;
@@ -40,5 +44,13 @@ public class FamilleArticle {
 
     public void setTypeStock(TypeStock typeStock) {
         this.typeStock = typeStock;
+    }
+
+    public List<CollectionArticle> getCollections() {
+        return collections;
+    }
+
+    public void setCollections(List<CollectionArticle> collections) {
+        this.collections = collections;
     }
 }

@@ -1,9 +1,9 @@
 package fr.textma.service;
 
-import fr.textma.model.Article;
-import fr.textma.model.RemiseBrut;
-import fr.textma.model.WebixTreeNode;
+import fr.textma.model.*;
 import fr.textma.repository.ArticleDao;
+import fr.textma.repository.FamilleArticleDao;
+import fr.textma.repository.GammeArticleDao;
 import fr.textma.repository.RemiseBrutDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +21,12 @@ public class RemiseServiceImpl implements RemiseService {
 	private RemiseBrutDao remiseDao;
 
 	@Autowired
+	private FamilleArticleDao familleArticleDao;
+
+	@Autowired
+	private GammeArticleDao gammeArticleDao;
+
+	@Autowired
 	private ArticleDao articleDao;
 
 	@Override
@@ -28,34 +34,46 @@ public class RemiseServiceImpl implements RemiseService {
 
 		List<RemiseBrut> remisesOfClient = remiseDao.getByClientId(clientId);
 
-		Iterable<Article> allArticles = articleDao.findAll();
+		Iterable<FamilleArticle> familleArticles = familleArticleDao.findAll();
+
+		Iterable<GammeArticle> gammeArticles = gammeArticleDao.findAll();
 
 		List<WebixTreeNode> results = new ArrayList<>();
 
-		allArticles.forEach(article -> {
-			Integer familleId = article.getCollection().getFamille().getId();
-			Integer collectionId = article.getCollection().getId();
-			Integer gammeId = article.getGamme().getId();
-			String hashArticle = familleId + "-" + collectionId + "-" + gammeId;
-
-			WebixTreeNode node = new WebixTreeNode();
-			node.setId(hashArticle);
-			node.setValue(article.getDesignation());
-
-//			node.setData(article.getCodeArticle());
-			results.add(node);
-		});
-
-//		List<WebixTreeNode> transports = new ArrayList<>();
-//		transports.add(new WebixTreeNode(1, "train", true));
-//		transports.add(new WebixTreeNode(2, "bus", false));
-//		results.add(new WebixTreeNode(3, "transport", true, transports));
-//
-//		List<WebixTreeNode> animals = new ArrayList<>();
-//		animals.add(new WebixTreeNode(4, "lion", true));
-//		animals.add(new WebixTreeNode(5, "tigre", false));
-//		animals.add(new WebixTreeNode(6, "elephant", true));
-//		results.add(new WebixTreeNode(7, "animal", true, animals));
+		if (familleArticles != null) {
+			// Familles des articles
+			familleArticles.forEach(famille -> {
+				WebixTreeNode nodeFamille = new WebixTreeNode(famille.getId().toString(), famille.getLibelle());
+//				if (famille.getCollections() != null && !famille.getCollections().isEmpty()) {
+//					// Collections des articles
+//					List<WebixTreeNode> collections = new ArrayList<>();
+//					for (CollectionArticle collection : famille.getCollections()) {
+//						WebixTreeNode nodeCollection = new WebixTreeNode(famille.getId() + "-" + collection.getId(), collection.getDesignation());
+//						if (gammeArticles != null) {
+//							// Gammes des articles
+//							List<WebixTreeNode> gammes = new ArrayList<>();
+//							gammeArticles.forEach(gamme -> {
+//								WebixTreeNode gammeNode = new WebixTreeNode(famille.getId() + "-" + collection.getId() + "-" + gamme.getId(), gamme.getDesignation());
+//								// Articles of famille-collection-gamme
+////								List<Article> articlesOfGamme = articleDao.findByCollectionAndGamme(collection, gamme);
+////								if (articlesOfGamme != null) {
+////									List<WebixTreeNode> articles = new ArrayList<>();
+////									for (Article article : articlesOfGamme) {
+////										WebixTreeNode articleNode = new WebixTreeNode(famille.getId() + "-" + collection.getId() + "-" + gamme.getId() + "-" + article.getId(), article.getDesignation());
+////									}
+////									gammeNode.setData(articles);
+////								}
+//								gammes.add(gammeNode);
+//							});
+//							nodeCollection.setData(gammes);
+//						}
+//						collections.add(nodeCollection);
+//					}
+//					nodeFamille.setData(collections);
+//				}
+				results.add(nodeFamille);
+			});
+		}
 
 		return results;
 	}

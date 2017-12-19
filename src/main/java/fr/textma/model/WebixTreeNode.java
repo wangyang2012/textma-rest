@@ -16,6 +16,11 @@ public class WebixTreeNode {
     public WebixTreeNode() {
     }
 
+    public WebixTreeNode(String id, String value) {
+        this.id = id;
+        this.value = value;
+    }
+
     public WebixTreeNode(String id, String value, Boolean open) {
         this.id = id;
         this.value = value;
