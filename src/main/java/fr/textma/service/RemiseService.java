@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface RemiseService {
 
-	List<WebixTreeNode> getRemisesByCilent(Integer clientId);
+	List<WebixTreeNode> getRemisesByCilent(Integer clientId, String nodeId);
 
 }

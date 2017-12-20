@@ -18,6 +18,11 @@ public class RemiseSource {
 
     @GetMapping(value = "/remise/{clientId}")
     public List<WebixTreeNode> getRemisesOfClient(@PathVariable Integer clientId) {
-        return remiseService.getRemisesByCilent(clientId);
+        return remiseService.getRemisesByCilent(clientId, null);
+    }
+
+    @GetMapping(value = "/remise/{clientId}/{nodeId}")
+    public List<WebixTreeNode> getRemisesOfClientWithNodeId(@PathVariable Integer clientId, @PathVariable String nodeId) {
+        return remiseService.getRemisesByCilent(clientId, nodeId);
     }
 }
