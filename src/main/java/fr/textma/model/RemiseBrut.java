@@ -23,6 +23,9 @@ public class RemiseBrut {
     @Column(name="clr_aga_id")
     private Integer gammeArticleId;
 
+    @Column(name="clr_art_id")
+    private Integer articleId;
+
     @Column(name="clr_remise")
     private BigDecimal remise;
 
@@ -106,5 +109,13 @@ public class RemiseBrut {
 
     public void setGammeArticleId(Integer gammeArticleId) {
         this.gammeArticleId = gammeArticleId;
+    }
+
+    public Integer getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
     }
 }

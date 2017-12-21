@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -34,6 +35,12 @@ public class RemiseServiceImpl implements RemiseService {
 
         List<RemiseBrut> remisesOfClient = remiseDao.getByClientId(clientId);
 
+        HashMap<String, RemiseBrut> mapRemisesOfClient = new HashMap<>();
+        for (RemiseBrut remise : remisesOfClient) {
+            String key = remise.getFamilleArticleId() + "-" + remise.getCollectionArticleId() + "-" + remise.getGammeArticleId() + "-" + remise.getArticleId();
+            mapRemisesOfClient.put(key, remise);
+        }
+
         Iterable<FamilleArticle> familleArticles = familleArticleDao.findAll();
 
         Iterable<GammeArticle> gammeArticles = gammeArticleDao.findAll();
@@ -55,7 +62,12 @@ public class RemiseServiceImpl implements RemiseService {
             // Familles des articles
             String[] finalNodeIds = nodeIds;
             familleArticles.forEach(famille -> {
-                WebixTreeNode nodeFamille = new WebixTreeNode(famille.getId().toString(), famille.getLibelle(), false);
+                Integer nbCollections = famille.getCollections() == null ? 0 : famille.getCollections().size();
+                WebixTreeNode nodeFamille = new WebixTreeNode(famille.getId().toString(), famille.getLibelle() + " (" + nbCollections + ")", false);
+
+                if (mapRemisesOfClient.get(famille.getId()+"-0-0-0") != null) {
+                    nodeFamille.setValue("<span class='remised'>"+famille.getLibelle() + " (" + nbCollections + ")" + "</span>");
+                }
 
                 // level 1 => famille clicked; load collections
                 if (level >= 1 && famille.getCollections() != null && !famille.getCollections().isEmpty()) {
@@ -65,6 +77,10 @@ public class RemiseServiceImpl implements RemiseService {
                         List<WebixTreeNode> collections = new ArrayList<>();
                         for (CollectionArticle collection : famille.getCollections()) {
                             WebixTreeNode nodeCollection = new WebixTreeNode(famille.getId() + "-" + collection.getId(), collection.getDesignation());
+
+                            if (mapRemisesOfClient.get("0-"+collection.getId()+"-0-0") != null) {
+                                nodeCollection.setValue("<span class='remised'>" + collection.getDesignation() + "</span>");
+                            }
 
                             // level 2 => collection clicked; load gammes
                             if (level >= 2 && gammeArticles != null) {
