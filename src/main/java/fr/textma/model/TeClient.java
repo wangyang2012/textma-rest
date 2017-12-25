@@ -73,15 +73,13 @@ public class TeClient {
     @Formula("(select COALESCE(sum(fac.fac_totalttc), 0) from te_facture_fac fac where fac.fac_cli_id=cli_id and YEAR(fac.fac_datecreation) = YEAR(CURDATE()))")
     private BigDecimal totalFacture;
 
-    @Transient
-    private String codepostal;
 
     public String getCodepostal() {
         return codePostal;
     }
 
     public void setCodepostal(String codepostal) {
-        this.codepostal = codepostal;
+        this.codePostal = codepostal;
     }
 
     public Integer getId() {
@@ -111,16 +109,28 @@ public class TeClient {
     public Date getDerniereModification() {
         return derniereModification;
     }
+    public Date getDernieremodification() {
+        return derniereModification;
+    }
 
     public void setDerniereModification(Date derniereModification) {
+        this.derniereModification = derniereModification;
+    }
+    public void setDernieremodification(Date derniereModification) {
         this.derniereModification = derniereModification;
     }
 
     public Integer getCodeClient() {
         return codeClient;
     }
+    public Integer getCodeclient() {
+        return codeClient;
+    }
 
     public void setCodeClient(Integer codeClient) {
+        this.codeClient = codeClient;
+    }
+    public void setCodeclient(Integer codeClient) {
         this.codeClient = codeClient;
     }
 
@@ -191,8 +201,14 @@ public class TeClient {
     public TsModePaiement getModePaiement() {
         return modePaiement;
 }
+    public TsModePaiement getModepaiement() {
+        return modePaiement;
+    }
 
     public void setModePaiement(TsModePaiement modePaiement) {
+        this.modePaiement = modePaiement;
+    }
+    public void setModepaiement(TsModePaiement modePaiement) {
         this.modePaiement = modePaiement;
     }
 
@@ -208,7 +224,14 @@ public class TeClient {
         return totalFacture;
     }
 
+    public BigDecimal getTotalfacture() {
+        return totalFacture;
+    }
+
     public void setTotalFacture(BigDecimal totalFacture) {
+        this.totalFacture = totalFacture;
+    }
+    public void setTotalfacture(BigDecimal totalFacture) {
         this.totalFacture = totalFacture;
     }
 
