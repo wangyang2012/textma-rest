@@ -29,7 +29,14 @@ public class TeFamilleClient {
         return nom;
     }
 
+    public String getValue() {
+        return nom;
+    }
+
     public void setNom(String nom) {
+        this.nom = nom;
+    }
+    public void setValue(String nom) {
         this.nom = nom;
     }
 
@@ -40,4 +47,5 @@ public class TeFamilleClient {
     public void setClients(List<TeClient> clients) {
         this.clients = clients;
     }
+
 }

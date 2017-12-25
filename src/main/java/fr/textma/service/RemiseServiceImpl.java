@@ -33,6 +33,8 @@ public class RemiseServiceImpl implements RemiseService {
     @Override
     public List<WebixTreeNode> getRemisesByCilent(Integer clientId, String nodeId) {
 
+        // SELECT art_acl_id, art_aga_id, count(*) FROM textma.te_article_art group by art_acl_id, art_aga_id;
+
         List<RemiseBrut> remisesOfClient = remiseDao.getByClientId(clientId);
 
         HashMap<String, RemiseBrut> mapRemisesOfClient = new HashMap<>();
