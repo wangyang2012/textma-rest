@@ -78,8 +78,18 @@ public class TeClient {
     private TeFamilleClient famille;
 
     @ManyToOne
+    @JoinColumn(name = "cli_rep_id")
+    private Representant representant;
+
+    @ManyToOne
     @JoinColumn(name = "cli_mpa_id")
     private TsModePaiement modePaiement;
+
+    @Column(name="cli_escompte")
+    private BigDecimal escompte;
+
+    @Column(name="cli_soldedu")
+    private BigDecimal soldeDu;
 
     @OneToMany(mappedBy = "client")
     private List<TeFacture> factures;
@@ -327,5 +337,29 @@ public class TeClient {
 
     public void setOuvertureCompte(String ouvertureCompte) {
         this.ouvertureCompte = ouvertureCompte;
+    }
+
+    public Representant getRepresentant() {
+        return representant;
+    }
+
+    public void setRepresentant(Representant representant) {
+        this.representant = representant;
+    }
+
+    public BigDecimal getEscompte() {
+        return escompte;
+    }
+
+    public void setEscompte(BigDecimal escompte) {
+        this.escompte = escompte;
+    }
+
+    public BigDecimal getSoldeDu() {
+        return soldeDu;
+    }
+
+    public void setSoldeDu(BigDecimal soldeDu) {
+        this.soldeDu = soldeDu;
     }
 }

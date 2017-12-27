@@ -84,4 +84,8 @@ public class TsModePaiement {
     public void setJour(Integer jour) {
         this.jour = jour;
     }
+
+    public String getValue() {
+        return code + " - " + libelle + " - " + type;
+    }
 }
