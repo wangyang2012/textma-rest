@@ -39,8 +39,20 @@ public class TeClient {
     @Column(name="cli_ville")
     private String ville;
 
+    @Column(name="cli_pays")
+    private String pays;
+
     @Column(name="cli_telephone")
     private String telephone;
+
+    @Column(name="cli_fax")
+    private String fax;
+
+    @Column(name="cli_email")
+    private String email;
+
+    @Column(name="cli_url")
+    private String url;
 
     @Column(name="cli_siret")
     private String siret;
@@ -48,8 +60,18 @@ public class TeClient {
     @Column(name="cli_email3")
     private String rcs;
 
+    @Column(name="cli_email4")
+    private String ouvertureCompte;
+
+    @ManyToOne
+    @JoinColumn(name = "cli_fju_id")
+    private FormeJuridique formeJuridique;
+
     @Column(name="cli_observations")
     private String observations;
+
+    @Column(name="cli_numtva")
+    private String numeroTva;
 
     @ManyToOne
     @JoinColumn(name = "cli_clf_id")
@@ -166,12 +188,44 @@ public class TeClient {
         this.ville = ville;
     }
 
+    public String getPays() {
+        return pays;
+    }
+
+    public void setPays(String pays) {
+        this.pays = pays;
+    }
+
     public String getTelephone() {
         return telephone;
     }
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getSiret() {
@@ -196,6 +250,14 @@ public class TeClient {
 
     public void setFamille(TeFamilleClient famille) {
         this.famille = famille;
+    }
+
+    public FormeJuridique getFormeJuridique() {
+        return formeJuridique;
+    }
+
+    public void setFormeJuridique(FormeJuridique formeJuridique) {
+        this.formeJuridique = formeJuridique;
     }
 
     public TsModePaiement getModePaiement() {
@@ -249,5 +311,21 @@ public class TeClient {
 
     public void setObservations(String observations) {
         this.observations = observations;
+    }
+
+    public String getNumeroTva() {
+        return numeroTva;
+    }
+
+    public void setNumeroTva(String numeroTva) {
+        this.numeroTva = numeroTva;
+    }
+
+    public String getOuvertureCompte() {
+        return ouvertureCompte;
+    }
+
+    public void setOuvertureCompte(String ouvertureCompte) {
+        this.ouvertureCompte = ouvertureCompte;
     }
 }
