@@ -1,10 +1,7 @@
 package fr.textma.service;
 
 import fr.textma.model.*;
-import fr.textma.repository.ArticleDao;
-import fr.textma.repository.FamilleArticleDao;
-import fr.textma.repository.GammeArticleDao;
-import fr.textma.repository.RemiseBrutDao;
+import fr.textma.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,12 +27,18 @@ public class RemiseServiceImpl implements RemiseService {
     @Autowired
     private ArticleDao articleDao;
 
+    @Autowired
+    private RemiseCombinaisonDao remiseCombinaisonDao;
+
     @Override
     public List<WebixTreeNode> getRemisesByCilent(Integer clientId, String nodeId) {
 
         // SELECT art_acl_id, art_aga_id, count(*) FROM textma.te_article_art group by art_acl_id, art_aga_id;
+        // SELECT fam.afa_id famille_id, fam.afa_libelle famille_libelle, art.art_acl_id collection_id, col.acl_designation collection_libelle, art.art_aga_id gamme_id, gam.aga_designation gamme_libelle, count(*) count FROM textma.te_article_art art join te_artcollection_acl col on art.art_acl_id=col.acl_id join te_artfamille_afa fam on fam.afa_id = col.acl_afa_id join te_artgamme_aga gam on art.art_aga_id = gam.aga_id group by art_acl_id, art_aga_id order by famille_id, collection_id, gamme_id;
 
         List<RemiseBrut> remisesOfClient = remiseDao.getByClientId(clientId);
+
+        List<RemiseCombinaison> combinaisons = remiseCombinaisonDao.getAllRemiseCombinaisons();
 
         HashMap<String, RemiseBrut> mapRemisesOfClient = new HashMap<>();
         for (RemiseBrut remise : remisesOfClient) {
