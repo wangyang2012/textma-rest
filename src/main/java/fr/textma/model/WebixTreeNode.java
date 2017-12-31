@@ -1,6 +1,9 @@
 package fr.textma.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WebixTreeNode {
 
@@ -12,6 +15,8 @@ public class WebixTreeNode {
 
     private List<WebixTreeNode> data;
 
+    private Map<String, WebixTreeNode> hashedData;
+
 
     public WebixTreeNode() {
     }
@@ -19,12 +24,17 @@ public class WebixTreeNode {
     public WebixTreeNode(String id, String value) {
         this.id = id;
         this.value = value;
+        this.open = true;
+        this.data = new ArrayList<>();
+        this.hashedData = new HashMap<>();
     }
 
     public WebixTreeNode(String id, String value, Boolean open) {
         this.id = id;
         this.value = value;
         this.open = open;
+        this.data = new ArrayList<>();
+        this.hashedData = new HashMap<>();
     }
 
     public WebixTreeNode(String id, String value, Boolean open, List<WebixTreeNode> data) {
@@ -32,6 +42,8 @@ public class WebixTreeNode {
         this.value = value;
         this.open = open;
         this.data = data;
+        this.open = true;
+        this.hashedData = new HashMap<>();
     }
 
     public String getId() {
@@ -64,5 +76,13 @@ public class WebixTreeNode {
 
     public void setData(List<WebixTreeNode> data) {
         this.data = data;
+    }
+
+    public Map<String, WebixTreeNode> getHashedData() {
+        return hashedData;
+    }
+
+    public void setHashedData(Map<String, WebixTreeNode> hashedData) {
+        this.hashedData = hashedData;
     }
 }
