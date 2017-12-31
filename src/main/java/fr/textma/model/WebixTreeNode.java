@@ -24,7 +24,7 @@ public class WebixTreeNode {
     public WebixTreeNode(String id, String value) {
         this.id = id;
         this.value = value;
-        this.open = true;
+        this.open = false;
         this.data = new ArrayList<>();
         this.hashedData = new HashMap<>();
     }
@@ -42,7 +42,6 @@ public class WebixTreeNode {
         this.value = value;
         this.open = open;
         this.data = data;
-        this.open = true;
         this.hashedData = new HashMap<>();
     }
 

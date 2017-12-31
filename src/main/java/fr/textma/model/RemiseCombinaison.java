@@ -15,7 +15,6 @@ public class RemiseCombinaison {
     private String collectionLibelle;
     private Integer gammeId;
     private String gammeLibelle;
-    private Integer count;
     private Integer articleId;
     private String articleLibelle;
 
@@ -73,14 +72,6 @@ public class RemiseCombinaison {
 
     public void setGammeLibelle(String gammeLibelle) {
         this.gammeLibelle = gammeLibelle;
-    }
-
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
     }
 
     public Integer getArticleId() {
