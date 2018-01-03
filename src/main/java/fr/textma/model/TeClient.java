@@ -21,7 +21,7 @@ public class TeClient {
     @Column(name="cli_ferme")
     private Boolean ferme;
 
-    @Column(name="cli_reglo")
+    @Column(name="cli_ce")
     private Boolean virement;
 
     @Column(name="cli_affacturage")
