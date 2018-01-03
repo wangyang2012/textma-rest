@@ -21,6 +21,15 @@ public class TeClient {
     @Column(name="cli_ferme")
     private Boolean ferme;
 
+    @Column(name="cli_reglo")
+    private Boolean virement;
+
+    @Column(name="cli_affacturage")
+    private Boolean surveillanceSocieteCom;
+
+    @Column(name="cli_mauvaispayeur")
+    private Boolean mauvaisPayeur;
+
     @Column(name="cli_datemodification")
     private Date derniereModification;
 
@@ -361,5 +370,45 @@ public class TeClient {
 
     public void setSoldeDu(BigDecimal soldeDu) {
         this.soldeDu = soldeDu;
+    }
+
+    public Boolean getVirement() {
+        return virement;
+    }
+
+    public void setVirement(Boolean virement) {
+        this.virement = virement;
+    }
+
+    public Boolean getSurveillanceSocieteCom() {
+        return surveillanceSocieteCom;
+    }
+
+    public void setSurveillanceSocieteCom(Boolean surveillanceSocieteCom) {
+        this.surveillanceSocieteCom = surveillanceSocieteCom;
+    }
+
+    public void setSurveillancesocietecom(Boolean surveillanceSocieteCom) {
+        this.surveillanceSocieteCom = surveillanceSocieteCom;
+    }
+
+    public Boolean getSurveillancesocietecom() {
+        return surveillanceSocieteCom;
+    }
+
+    public Boolean getMauvaisPayeur() {
+        return mauvaisPayeur;
+    }
+
+    public void setMauvaisPayeur(Boolean mauvaisPayeur) {
+        this.mauvaisPayeur = mauvaisPayeur;
+    }
+
+    public Boolean getMauvaispayeur() {
+        return mauvaisPayeur;
+    }
+
+    public void setMauvaispayeur(Boolean mauvaisPayeur) {
+        this.mauvaisPayeur = mauvaisPayeur;
     }
 }
