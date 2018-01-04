@@ -8,78 +8,79 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="te_client_cli")
+@Table(name = "te_client_cli")
 public class TeClient {
 
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="cli_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "cli_id")
     private Integer id;
 
-    @Column(name="cli_bloque")
+    @Column(name = "cli_bloque")
     private Boolean bloque;
 
-    @Column(name="cli_ferme")
+    @Column(name = "cli_ferme")
     private Boolean ferme;
 
-    @Column(name="cli_ce")
+    @Column(name = "cli_ce")
     private Boolean virement;
 
-    @Column(name="cli_affacturage")
+    @Column(name = "cli_affacturage")
     private Boolean surveillanceSocieteCom;
 
-    @Column(name="cli_mauvaispayeur")
+    @Column(name = "cli_mauvaispayeur")
     private Boolean mauvaisPayeur;
 
-    @Column(name="cli_datemodification")
+    @Column(name = "cli_datemodification")
     private Date derniereModification;
 
-    @Column(name="cli_codeclient")
+    @Column(name = "cli_codeclient")
     private Integer codeClient;
 
-    @Column(name="cli_societe")
+    @Column(name = "cli_societe")
     private String nom;
 
-    @Column(name="cli_adresse")
+    @Column(name = "cli_adresse")
     private String adresse;
 
-    @Column(name="cli_codepostal")
+    @Column(name = "cli_codepostal")
     private String codePostal;
 
-    @Column(name="cli_ville")
+    @Column(name = "cli_ville")
     private String ville;
 
-    @Column(name="cli_pays")
+    @Column(name = "cli_pays")
     private String pays;
 
-    @Column(name="cli_telephone")
+    @Column(name = "cli_telephone")
     private String telephone;
 
-    @Column(name="cli_fax")
+    @Column(name = "cli_fax")
     private String fax;
 
-    @Column(name="cli_email")
+    @Column(name = "cli_email")
     private String email;
 
-    @Column(name="cli_url")
+    @Column(name = "cli_url")
     private String url;
 
-    @Column(name="cli_siret")
+    @Column(name = "cli_siret")
     private String siret;
 
-    @Column(name="cli_email3")
+    @Column(name = "cli_email3")
     private String rcs;
 
-    @Column(name="cli_email4")
+    @Column(name = "cli_email4")
     private String ouvertureCompte;
 
     @ManyToOne
     @JoinColumn(name = "cli_fju_id")
     private FormeJuridique formeJuridique;
 
-    @Column(name="cli_observations")
+    @Column(name = "cli_observations")
     private String observations;
 
-    @Column(name="cli_numtva")
+    @Column(name = "cli_numtva")
     private String numeroTva;
 
     @ManyToOne
@@ -94,10 +95,10 @@ public class TeClient {
     @JoinColumn(name = "cli_mpa_id")
     private TsModePaiement modePaiement;
 
-    @Column(name="cli_escompte")
+    @Column(name = "cli_escompte")
     private BigDecimal escompte;
 
-    @Column(name="cli_soldedu")
+    @Column(name = "cli_soldedu")
     private BigDecimal soldeDu;
 
     @OneToMany(mappedBy = "client")
@@ -150,6 +151,7 @@ public class TeClient {
     public Date getDerniereModification() {
         return derniereModification;
     }
+
     public Date getDernieremodification() {
         return derniereModification;
     }
@@ -157,6 +159,7 @@ public class TeClient {
     public void setDerniereModification(Date derniereModification) {
         this.derniereModification = derniereModification;
     }
+
     public void setDernieremodification(Date derniereModification) {
         this.derniereModification = derniereModification;
     }
@@ -164,6 +167,7 @@ public class TeClient {
     public Integer getCodeClient() {
         return codeClient;
     }
+
     public Integer getCodeclient() {
         return codeClient;
     }
@@ -171,6 +175,7 @@ public class TeClient {
     public void setCodeClient(Integer codeClient) {
         this.codeClient = codeClient;
     }
+
     public void setCodeclient(Integer codeClient) {
         this.codeClient = codeClient;
     }
@@ -281,7 +286,8 @@ public class TeClient {
 
     public TsModePaiement getModePaiement() {
         return modePaiement;
-}
+    }
+
     public TsModePaiement getModepaiement() {
         return modePaiement;
     }
@@ -289,6 +295,7 @@ public class TeClient {
     public void setModePaiement(TsModePaiement modePaiement) {
         this.modePaiement = modePaiement;
     }
+
     public void setModepaiement(TsModePaiement modePaiement) {
         this.modePaiement = modePaiement;
     }
@@ -312,6 +319,7 @@ public class TeClient {
     public void setTotalFacture(BigDecimal totalFacture) {
         this.totalFacture = totalFacture;
     }
+
     public void setTotalfacture(BigDecimal totalFacture) {
         this.totalFacture = totalFacture;
     }
