@@ -51,6 +51,11 @@ public class TeClientRestSource {
         return client;
     }
 
+    @PutMapping(value = "/teClients")
+    public void createOrUpdateClient(@RequestBody TeClient client) {
+        teClientService.save(client);
+    }
+
 
     @GetMapping(value = "/teClients/sous-client/{id}")
     public List<TeClient> getSousClientsById(@PathVariable Integer id) {
@@ -60,12 +65,12 @@ public class TeClientRestSource {
         return teClientService.getSousClients(id);
     }
 
-    @RequestMapping(value = "/teClients/{id}", method = RequestMethod.POST)
-    public @ResponseBody
-    String updateClient(@RequestBody TeClient client) {
-        teClientService.update(client);
-        return "ok";
-    }
+//    @RequestMapping(value = "/teClients/{id}", method = RequestMethod.POST)
+//    public @ResponseBody
+//    String updateClient(@RequestBody TeClient client) {
+//        teClientService.save(client);
+//        return "ok";
+//    }
 
     private Sort getSortInfo(@RequestParam(required = false) Map<String, String> filter) {
         String bloque = filter.get("sort[bloque]");

@@ -16,7 +16,7 @@ public interface TeClientService {
 
 	Page<TeClient> searchClients(String search, Pageable pageable);
 
-	void update(TeClient client);
+	void save(TeClient client);
 
 	List<TeClient> getSousClients(Integer id);
 
