@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -53,6 +54,9 @@ public class TeClientRestSource {
 
     @GetMapping(value = "/teClients/sous-client/{id}")
     public List<TeClient> getSousClientsById(@PathVariable Integer id) {
+        if (id == null || id < 0) {
+            return new ArrayList<>();
+        }
         return teClientService.getSousClients(id);
     }
 
