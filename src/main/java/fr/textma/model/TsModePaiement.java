@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class TsModePaiement {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mpa_id")
     private Integer id;
 

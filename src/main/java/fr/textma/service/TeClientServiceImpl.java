@@ -1,6 +1,8 @@
 package fr.textma.service;
 
 import fr.textma.model.TeClient;
+import fr.textma.repository.ModePaiementDao;
+import fr.textma.repository.RepresentantDao;
 import fr.textma.repository.TeClientDao;
 import liquibase.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,13 @@ public class TeClientServiceImpl implements TeClientService{
 	@Autowired
 	private TeClientDao dao;
 
+	@Autowired
+	private ModePaiementDao modePaiementDao;
+
+	@Autowired
+	private RepresentantDao representantDao;
+
+
 	public TeClient findById(Integer id) {
 		return dao.findOne(id);
 	}
@@ -32,7 +41,14 @@ public class TeClientServiceImpl implements TeClientService{
 	}
 
 	@Override
-	public void update(TeClient client) {
+	public void save(TeClient client) {
+		if (client.getModepaiement() != null && StringUtils.isNotEmpty(client.getModepaiement().getCode())) {
+			modePaiementDao.save(client.getModePaiement());
+		}
+
+		if (client.getRepresentant() != null) {
+			representantDao.save(client.getRepresentant());
+		}
 		dao.save(client);
 	}
 

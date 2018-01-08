@@ -12,7 +12,7 @@ import java.util.List;
 public class TeClient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cli_id")
     private Integer id;
 
@@ -73,7 +73,7 @@ public class TeClient {
     @Column(name = "cli_email4")
     private String ouvertureCompte;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "cli_fju_id")
     private FormeJuridique formeJuridique;
 
@@ -83,15 +83,15 @@ public class TeClient {
     @Column(name = "cli_numtva")
     private String numeroTva;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "cli_clf_id")
     private TeFamilleClient famille;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "cli_rep_id")
     private Representant representant;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "cli_mpa_id")
     private TsModePaiement modePaiement;
 
