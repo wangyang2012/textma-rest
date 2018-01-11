@@ -42,13 +42,6 @@ public class TeClientServiceImpl implements TeClientService{
 
 	@Override
 	public void save(TeClient client) {
-		if (client.getModepaiement() != null && StringUtils.isNotEmpty(client.getModepaiement().getCode())) {
-			modePaiementDao.save(client.getModePaiement());
-		}
-
-		if (client.getRepresentant() != null) {
-			representantDao.save(client.getRepresentant());
-		}
 		dao.save(client);
 	}
 

@@ -73,7 +73,7 @@ public class TeClient {
     @Column(name = "cli_email4")
     private String ouvertureCompte;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.DETACH)
     @JoinColumn(name = "cli_fju_id")
     private FormeJuridique formeJuridique;
 
@@ -83,15 +83,15 @@ public class TeClient {
     @Column(name = "cli_numtva")
     private String numeroTva;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.DETACH)
     @JoinColumn(name = "cli_clf_id")
     private TeFamilleClient famille;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.DETACH)
     @JoinColumn(name = "cli_rep_id")
     private Representant representant;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.DETACH)
     @JoinColumn(name = "cli_mpa_id")
     private TsModePaiement modePaiement;
 
