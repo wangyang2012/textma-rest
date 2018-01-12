@@ -1,5 +1,8 @@
 package fr.textma.model;
 
+import org.hibernate.annotations.JoinColumnOrFormula;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -16,19 +19,24 @@ public class Remise {
     private TeClient client;
 
     @ManyToOne
+    @JoinColumnOrFormula
     @JoinColumn(name="clr_afa_id")
-    private FamilleArticle familleArticle;
+    @Where(clause = "clr_afa_id > 0")
+    private FamilleArticle famille;
 
     @ManyToOne
     @JoinColumn(name="clr_acl_id")
-    private CollectionArticle collectionArticle;
+    @Where(clause = "clr_acl_id > 0")
+    private CollectionArticle collection;
 
     @ManyToOne
     @JoinColumn(name="clr_aga_id")
-    private GammeArticle gammeArticle;
+    @Where(clause = "clr_aga_id > 0")
+    private GammeArticle gamme;
 
     @ManyToOne
     @JoinColumn(name="clr_art_id")
+    @Where(clause = "clr_art_id > 0")
     private Article article;
 
     @Column(name="clr_remise")
@@ -59,28 +67,28 @@ public class Remise {
         this.client = client;
     }
 
-    public FamilleArticle getFamilleArticle() {
-        return familleArticle;
+    public FamilleArticle getFamille() {
+        return famille;
     }
 
-    public void setFamilleArticle(FamilleArticle familleArticle) {
-        this.familleArticle = familleArticle;
+    public void setFamille(FamilleArticle famille) {
+        this.famille = famille;
     }
 
-    public CollectionArticle getCollectionArticle() {
-        return collectionArticle;
+    public CollectionArticle getCollection() {
+        return collection;
     }
 
-    public void setCollectionArticle(CollectionArticle collectionArticle) {
-        this.collectionArticle = collectionArticle;
+    public void setCollection(CollectionArticle collection) {
+        this.collection = collection;
     }
 
-    public GammeArticle getGammeArticle() {
-        return gammeArticle;
+    public GammeArticle getGamme() {
+        return gamme;
     }
 
-    public void setGammeArticle(GammeArticle gammeArticle) {
-        this.gammeArticle = gammeArticle;
+    public void setGamme(GammeArticle gamme) {
+        this.gamme = gamme;
     }
 
     public Article getArticle() {
@@ -124,16 +132,16 @@ public class Remise {
     }
 
     public String getLibelle() {
-        if (familleArticle != null) {
-            return familleArticle.getLibelle();
+        if (famille != null) {
+            return famille.getLibelle();
         }
 
-        if (collectionArticle != null) {
-            return collectionArticle.getDesignation();
+        if (collection != null) {
+            return collection.getDesignation();
         }
 
-        if (gammeArticle != null) {
-            return gammeArticle.getDesignation();
+        if (gamme != null) {
+            return gamme.getDesignation();
         }
 
         if (article != null) {

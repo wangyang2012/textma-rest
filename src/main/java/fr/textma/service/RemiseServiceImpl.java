@@ -2,15 +2,13 @@ package fr.textma.service;
 
 import fr.textma.model.*;
 import fr.textma.repository.*;
+import liquibase.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service("RemiseService")
@@ -18,7 +16,10 @@ import java.util.Map;
 public class RemiseServiceImpl implements RemiseService {
 
     @Autowired
-    private RemiseBrutDao remiseDao;
+    private RemiseDao remiseDao;
+
+    @Autowired
+    private RemiseBrutDao remiseBrutDao;
 
     @Autowired
     private FamilleArticleDao familleArticleDao;
@@ -45,7 +46,7 @@ public class RemiseServiceImpl implements RemiseService {
     public List<WebixTreeNode> getRemisesByCilent(Integer clientId, String nodeId) {
 
         // Get all remises of client
-        List<RemiseBrut> remisesOfClient = remiseDao.getByClientId(clientId);
+        List<RemiseBrut> remisesOfClient = remiseBrutDao.getByClientId(clientId);
 
         // Get all combinaisons of famille-collection-gamme-article from the article table
         List<RemiseCombinaison> combinaisons = remiseCombinaisonDao.getAllRemiseCombinaisons();
@@ -70,7 +71,7 @@ public class RemiseServiceImpl implements RemiseService {
             // Collection
             Map<String, WebixTreeNode> hashedCollections = famille.getHashedData();
             String collectionId = familleId + "-" + combinaison.getCollectionId();
-            WebixTreeNode collection  = hashedCollections.get(collectionId);
+            WebixTreeNode collection = hashedCollections.get(collectionId);
             if (collection == null) {
                 WebixTreeNode newCollection = new WebixTreeNode(collectionId, combinaison.getCollectionLibelle());
                 famille.getHashedData().put(collectionId, newCollection);
@@ -104,7 +105,7 @@ public class RemiseServiceImpl implements RemiseService {
             Map<String, WebixTreeNode> hashedArticles = gamme.getHashedData();
             String articleId = gammeId + "-" + combinaison.getArticleId();
             WebixTreeNode article = hashedArticles.get(articleId);
-            if (article== null) {
+            if (article == null) {
                 WebixTreeNode newArticle = new WebixTreeNode(articleId, combinaison.getArticleLibelle());
                 gamme.getHashedData().put(articleId, newArticle);
                 gamme.getData().add(newArticle);
@@ -123,19 +124,51 @@ public class RemiseServiceImpl implements RemiseService {
 
     @Override
     public Remise getRemise(Integer clientId, String nodeId) {
-        Article article = new Article();
-        article.setDesignation("Produit test");
-        Remise remise = new Remise();
-        remise.setArticle(article);
-        remise.setPrix(new BigDecimal(15));
-        remise.setRotationPourcentage(new BigDecimal(20));
+        if (StringUtils.isEmpty(nodeId)) {
+            return null;
+        }
+        String[] ids = nodeId.split("-");
+        Remise remise = null;
+        switch (ids.length) {
+            case 1:
+                // Remise famille
+                String familleId = ids[0];
+                FamilleArticle famille = new FamilleArticle();
+                famille.setId(Integer.valueOf(familleId));
+                remise = remiseDao.getByFamille(Integer.valueOf(familleId));
+                break;
+            case 2:
+                // Remise collection
+                String collectionId  = ids[1];
+                CollectionArticle collection = new CollectionArticle();
+                collection.setId(Integer.valueOf(collectionId));
+                remise = remiseDao.getByCollection(Integer.valueOf(collectionId));
+                break;
+            case 3:
+                // Remise gamme
+                String gammeId  = ids[2];
+                GammeArticle gamme = new GammeArticle();
+                gamme.setId(Integer.valueOf(gammeId));
+                remise = remiseDao.getByGamme(gamme);
+                break;
+            case 4:
+                // Remise article
+                String articleId  = ids[3];
+                Article article = new Article();
+                article.setId(Integer.valueOf(articleId));
+                return remiseDao.getByArticle(article);
+        }
+
+        if (remise == null) {
+            remise = new Remise();
+        }
         return remise;
     }
 
     // To improve: use HashMap or MapReduce for searchById
     private RemiseBrut findRemiseOfClient(List<RemiseBrut> remisesOfClient, String field, Integer id) {
         for (RemiseBrut remise : remisesOfClient) {
-            switch(field) {
+            switch (field) {
                 case "famille":
                     if (remise.getFamilleArticleId().equals(id)) {
                         return remise;
