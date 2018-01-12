@@ -1,5 +1,6 @@
 package fr.textma.web.rest.client;
 
+import fr.textma.model.Remise;
 import fr.textma.model.WebixTreeNode;
 import fr.textma.service.RemiseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class RemiseSource {
     }
 
     @GetMapping(value = "/remise/{clientId}/{nodeId}")
-    public List<WebixTreeNode> getRemisesOfClientWithNodeId(@PathVariable Integer clientId, @PathVariable String nodeId) {
-        return remiseService.getRemisesByCilent(clientId, nodeId);
+    public Remise getRemisesOfClientWithNodeId(@PathVariable Integer clientId, @PathVariable String nodeId) {
+        return remiseService.getRemise(clientId, nodeId);
     }
 }

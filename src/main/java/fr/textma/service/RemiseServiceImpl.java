@@ -1,13 +1,12 @@
 package fr.textma.service;
 
-import fr.textma.model.RemiseBrut;
-import fr.textma.model.RemiseCombinaison;
-import fr.textma.model.WebixTreeNode;
+import fr.textma.model.*;
 import fr.textma.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -120,6 +119,17 @@ public class RemiseServiceImpl implements RemiseService {
             }
         }
         return new ArrayList<WebixTreeNode>(results.values());
+    }
+
+    @Override
+    public Remise getRemise(Integer clientId, String nodeId) {
+        Article article = new Article();
+        article.setDesignation("Produit test");
+        Remise remise = new Remise();
+        remise.setArticle(article);
+        remise.setPrix(new BigDecimal(15));
+        remise.setRotationPourcentage(new BigDecimal(20));
+        return remise;
     }
 
     // To improve: use HashMap or MapReduce for searchById

@@ -27,6 +27,10 @@ public class Remise {
     @JoinColumn(name="clr_aga_id")
     private GammeArticle gammeArticle;
 
+    @ManyToOne
+    @JoinColumn(name="clr_art_id")
+    private Article article;
+
     @Column(name="clr_remise")
     private BigDecimal remise;
 
@@ -79,6 +83,14 @@ public class Remise {
         this.gammeArticle = gammeArticle;
     }
 
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
     public BigDecimal getRemise() {
         return remise;
     }
@@ -109,5 +121,24 @@ public class Remise {
 
     public void setRetationPrix(BigDecimal retationPrix) {
         this.retationPrix = retationPrix;
+    }
+
+    public String getLibelle() {
+        if (familleArticle != null) {
+            return familleArticle.getLibelle();
+        }
+
+        if (collectionArticle != null) {
+            return collectionArticle.getDesignation();
+        }
+
+        if (gammeArticle != null) {
+            return gammeArticle.getDesignation();
+        }
+
+        if (article != null) {
+            return article.getDesignation();
+        }
+        return "";
     }
 }
