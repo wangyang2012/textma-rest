@@ -19,9 +19,7 @@ public class Remise {
     private TeClient client;
 
     @ManyToOne
-    @JoinColumnOrFormula
     @JoinColumn(name="clr_afa_id")
-    @Where(clause = "clr_afa_id > 0")
     private FamilleArticle famille;
 
     @ManyToOne
