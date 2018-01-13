@@ -65,12 +65,11 @@ public class TeClientRestSource {
         return teClientService.getSousClients(id);
     }
 
-//    @RequestMapping(value = "/teClients/{id}", method = RequestMethod.POST)
-//    public @ResponseBody
-//    String updateClient(@RequestBody TeClient client) {
-//        teClientService.save(client);
-//        return "ok";
-//    }
+    @DeleteMapping(value="/teClients/{id}")
+    public String deleteClientsById(@PathVariable Integer id) {
+        teClientService.deleteClientById(id);
+        return "ok";
+    }
 
     private Sort getSortInfo(@RequestParam(required = false) Map<String, String> filter) {
         String bloque = filter.get("sort[bloque]");

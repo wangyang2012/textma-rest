@@ -18,6 +18,8 @@ public interface TeClientService {
 
 	void save(TeClient client);
 
+	void deleteClientById(Integer id);
+
 	List<TeClient> getSousClients(Integer id);
 
 }

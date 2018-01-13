@@ -46,6 +46,11 @@ public class TeClientServiceImpl implements TeClientService{
 	}
 
 	@Override
+	public void deleteClientById(Integer id) {
+		dao.delete(id);
+	}
+
+	@Override
 	public List<TeClient> getSousClients(Integer id) {
 		TeClient client = findById(id);
 		return client.getSousClients();
