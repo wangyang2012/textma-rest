@@ -1,10 +1,10 @@
 package fr.textma.web.rest.client;
 
 import fr.textma.model.TeAdresse;
-import fr.textma.model.TeContact;
+import fr.textma.model.TeClient;
 import fr.textma.model.WebixDatatableResponse;
 import fr.textma.service.TeAdresseService;
-import fr.textma.service.TeContactService;
+import fr.textma.service.TeClientService;
 import liquibase.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +22,10 @@ import java.util.Map;
 public class TeAdresseRestSource {
 
     @Autowired
-    TeAdresseService service;
+    private TeAdresseService service;
+
+    @Autowired
+    private TeClientService clientService;
 
     @GetMapping(value = "/teAdresses/{clientId}")
     public WebixDatatableResponse<TeAdresse> listTeAdresses(@PathVariable Integer clientId, @RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
@@ -31,6 +34,20 @@ public class TeAdresseRestSource {
         Pageable pageable = new PageRequest(page, count, sort);
         Page<TeAdresse> contacts = service.findByClientId(clientId, pageable);
         return new WebixDatatableResponse<TeAdresse>(contacts, start);
+    }
+
+    // Transférer une adresse du client en adresse de livraison
+    @PostMapping(value="/teAdresses/{clientId}")
+    public String transfereAdresseLivraison(@PathVariable Integer clientId, @RequestBody TeAdresse adresse) {
+        TeClient client = clientService.findById(clientId);
+        adresse.setNomSociete(client.getNom());
+        adresse.setClientId(clientId);
+        adresse.setId(null);
+        service.save(adresse);
+        if (adresse != null) {
+            return "ok";
+        }
+        return "ko";
     }
 
     private Sort getSortInfo(@RequestParam(required = false) Map<String, String> filter) {

@@ -20,4 +20,9 @@ public class TeAdresseServiceImpl implements TeAdresseService{
 	public Page<TeAdresse> findByClientId(Integer clientId, Pageable pageable) {
 		return dao.findByClientId(clientId, pageable);
 	}
+
+	@Override
+	public TeAdresse save(TeAdresse adresse) {
+		return dao.save(adresse);
+	}
 }

@@ -11,4 +11,6 @@ public interface TeAdresseService {
 
 	Page<TeAdresse> findByClientId(Integer clientId, Pageable pageable);
 
+	TeAdresse save(TeAdresse adresse);
+
 }
