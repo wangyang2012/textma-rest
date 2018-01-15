@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name="te_adresse_adr")
 public class TeAdresse {
 
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="adr_id")
     private Integer id;
 

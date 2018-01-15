@@ -3,29 +3,29 @@ package fr.textma.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="ts_representant_rep")
-public class Representant {
+@Table(name="ts_commercialinterne_coi")
+public class CommercialInterne {
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="rep_id")
+    @Column(name="coi_id")
     private Integer id;
 
-    @Column(name = "rep_code")
+    @Column(name = "coi_code")
     private String code;
 
-    @Column(name="rep_nom")
+    @Column(name="coi_nom")
     private String nom;
 
-    @Column(name="rep_prenom")
+    @Column(name="coi_prenom")
     private String prenom;
 
-    @Column(name="rep_civilite")
+    @Column(name="coi_civilite")
     private String civilite;
 
-    @Column(name="rep_telephone")
+    @Column(name="coi_telephone")
     private String telephone;
 
-    @Column(name="rep_fonction")
+    @Column(name="coi_fonction")
     private String fonction;
 
     public Integer getId() {

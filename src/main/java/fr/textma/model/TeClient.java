@@ -92,6 +92,10 @@ public class TeClient {
     private Representant representant;
 
     @ManyToOne(cascade=CascadeType.DETACH)
+    @JoinColumn(name = "cli_coi_id")
+    private CommercialInterne commercialInterne;
+
+    @ManyToOne(cascade=CascadeType.DETACH)
     @JoinColumn(name = "cli_mpa_id")
     private TsModePaiement modePaiement;
 
@@ -418,5 +422,13 @@ public class TeClient {
 
     public void setMauvaispayeur(Boolean mauvaisPayeur) {
         this.mauvaisPayeur = mauvaisPayeur;
+    }
+
+    public CommercialInterne getCommercialInterne() {
+        return commercialInterne;
+    }
+
+    public void setCommercialInterne(CommercialInterne commercialInterne) {
+        this.commercialInterne = commercialInterne;
     }
 }
