@@ -30,4 +30,14 @@ public class TeContactServiceImpl implements TeContactService{
 	public Page<TeContact> findByClientId(Integer clientId, Pageable pageable) {
 		return dao.findByClientId(clientId, pageable);
 	}
+
+	@Override
+	public TeContact findById(Integer id) {
+		return dao.findOne(id);
+	}
+
+	@Override
+	public void save(TeContact contact) {
+		dao.save(contact);
+	}
 }

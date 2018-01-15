@@ -28,4 +28,8 @@ public class TeFonctionContact {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+    public String getValue() {
+        return nom;
+    }
 }

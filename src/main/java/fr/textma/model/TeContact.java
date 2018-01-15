@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name="te_contact_cot")
 public class TeContact {
 
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="cot_id")
     private Integer id;
 

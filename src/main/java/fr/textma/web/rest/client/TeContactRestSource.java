@@ -32,7 +32,20 @@ public class TeContactRestSource {
         return new WebixDatatableResponse<TeContact>(contacts, start);
     }
 
-    @GetMapping(value = "/teContacts/{clientId}")
+    @GetMapping(value = "/teContacts/{id}")
+    public TeContact getContactById(@PathVariable Integer id) {
+        TeContact contact = service.findById(id);
+        return contact;
+    }
+
+
+    @PutMapping(value = "/teContacts")
+    public String saveContact(@RequestBody TeContact contact) {
+        service.save(contact);
+        return "ok";
+    }
+
+    @GetMapping(value = "/teContacts/client/{clientId}")
     public WebixDatatableResponse<TeContact> listTeContactsByClient(@PathVariable Integer clientId, @RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
         Integer page = start / count;
         Sort sort = getSortInfo(filter);

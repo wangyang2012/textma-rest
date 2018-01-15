@@ -14,4 +14,7 @@ public interface TeContactService {
 
 	Page<TeContact> findByClientId(Integer clientId, Pageable pageable);
 
+    TeContact findById(Integer id);
+
+    void save(TeContact contact);
 }
