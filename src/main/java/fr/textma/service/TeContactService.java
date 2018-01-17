@@ -17,4 +17,6 @@ public interface TeContactService {
     TeContact findById(Integer id);
 
     void save(TeContact contact);
+
+    void delete(Integer id);
 }

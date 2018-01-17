@@ -40,4 +40,9 @@ public class TeContactServiceImpl implements TeContactService{
 	public void save(TeContact contact) {
 		dao.save(contact);
 	}
+
+	@Override
+	public void delete(Integer id) {
+		dao.delete(id);
+	}
 }

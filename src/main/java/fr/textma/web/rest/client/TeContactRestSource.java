@@ -45,6 +45,13 @@ public class TeContactRestSource {
         return "ok";
     }
 
+
+    @DeleteMapping(value = "/teContacts/{id}")
+    public String deleteContactById(@PathVariable Integer id) {
+        service.delete(id);
+        return "ok";
+    }
+
     @GetMapping(value = "/teContacts/client/{clientId}")
     public WebixDatatableResponse<TeContact> listTeContactsByClient(@PathVariable Integer clientId, @RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
         Integer page = start / count;
