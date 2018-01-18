@@ -9,4 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface TeAdresseDao extends CrudRepository<TeAdresse, Integer> {
     Page<TeAdresse> findByClientId(Integer clientId, Pageable pageable);
+
+    TeAdresse findById(Integer id);
 }

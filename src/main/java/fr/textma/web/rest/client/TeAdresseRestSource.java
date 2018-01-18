@@ -27,13 +27,31 @@ public class TeAdresseRestSource {
     @Autowired
     private TeClientService clientService;
 
-    @GetMapping(value = "/teAdresses/{clientId}")
+    @GetMapping(value = "/teAdresses/client/{clientId}")
     public WebixDatatableResponse<TeAdresse> listTeAdresses(@PathVariable Integer clientId, @RequestParam(defaultValue = "20", required = false) Integer count, @RequestParam(defaultValue = "0", required = false) Integer start, @RequestParam(required = false) Map<String, String> filter) {
         Integer page = start / count;
         Sort sort = getSortInfo(filter);
         Pageable pageable = new PageRequest(page, count, sort);
         Page<TeAdresse> contacts = service.findByClientId(clientId, pageable);
         return new WebixDatatableResponse<TeAdresse>(contacts, start);
+    }
+
+    @GetMapping(value = "/teAdresses/{id}")
+    public TeAdresse getAdresse(@PathVariable Integer id) {
+        TeAdresse adresse = service.getAdresse(id);
+        return adresse;
+    }
+
+    @PutMapping(value = "/teAdresses")
+    public String saveAdresse(@RequestBody TeAdresse adresse) {
+        service.save(adresse);
+        return "ok";
+    }
+
+    @DeleteMapping(value = "/teAdresses/{id}")
+    public String deleteAdresse(@PathVariable Integer id) {
+        service.delete(id);
+        return "ok";
     }
 
     // Transférer une adresse du client en adresse de livraison

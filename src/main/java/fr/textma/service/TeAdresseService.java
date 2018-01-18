@@ -13,4 +13,8 @@ public interface TeAdresseService {
 
 	TeAdresse save(TeAdresse adresse);
 
+	void delete(Integer id);
+
+	TeAdresse getAdresse(Integer id);
+
 }

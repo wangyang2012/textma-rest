@@ -25,4 +25,14 @@ public class TeAdresseServiceImpl implements TeAdresseService{
 	public TeAdresse save(TeAdresse adresse) {
 		return dao.save(adresse);
 	}
+
+	@Override
+	public void delete(Integer id) {
+		dao.delete(id);
+	}
+
+	@Override
+	public TeAdresse getAdresse(Integer id) {
+		return dao.findById(id);
+	}
 }
