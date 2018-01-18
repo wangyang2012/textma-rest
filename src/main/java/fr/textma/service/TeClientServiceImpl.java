@@ -55,4 +55,9 @@ public class TeClientServiceImpl implements TeClientService{
 		TeClient client = findById(id);
 		return client.getSousClients();
 	}
+
+	@Override
+	public void updateObservations(Integer clientId, String observations) {
+		dao.updateObservations(clientId, observations);
+	}
 }

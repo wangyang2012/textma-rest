@@ -1,7 +1,9 @@
 package fr.textma.web.rest.client;
 
+import fr.textma.model.LiaisonClient;
 import fr.textma.model.TeClient;
 import fr.textma.model.WebixDatatableResponse;
+import fr.textma.service.LiaisonClientService;
 import fr.textma.service.TeClientService;
 import liquibase.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,13 @@ import java.util.Map;
 public class TeClientRestSource {
 
     @Autowired
-    TeClientService teClientService;
+    private TeClientService teClientService;
 
     @Autowired
-    MessageSource messageSource;
+    private MessageSource messageSource;
+
+    @Autowired
+    private LiaisonClientService liaisonClientService;
 
 
     @GetMapping(value = "/teClients")
@@ -51,6 +56,12 @@ public class TeClientRestSource {
         return client;
     }
 
+    @PutMapping(value = "/teClients/{clientId}/observations")
+    public String updateObservations(@PathVariable Integer clientId, @RequestBody String observations) {
+        teClientService.updateObservations(clientId, observations);
+        return "ok";
+    }
+
     @PutMapping(value = "/teClients")
     public void createOrUpdateClient(@RequestBody TeClient client) {
         teClientService.save(client);
@@ -63,6 +74,29 @@ public class TeClientRestSource {
             return new ArrayList<>();
         }
         return teClientService.getSousClients(id);
+    }
+
+    @PutMapping(value="/teClients/{id}/sous-client/{idSousClient}")
+    public String addSousClient(@PathVariable Integer id, @PathVariable Integer idSousClient) {
+        // Pour éviter les boucles infinies
+        if (id == idSousClient) {
+            return "ko";
+        }
+        LiaisonClient liaison = new LiaisonClient();
+        liaison.setMereId(id);
+        liaison.setFilsId(idSousClient);
+        liaisonClientService.save(liaison);
+        return "ok";
+    }
+
+    @DeleteMapping(value="/teClients/{id}/sous-client/{idSousClient}")
+    public String deleteSousClient(@PathVariable Integer id, @PathVariable Integer idSousClient) {
+        // Pour éviter les boucles infinies
+        if (id == null || idSousClient == null) {
+            return "ko";
+        }
+        liaisonClientService.delete(id, idSousClient);
+        return "ok";
     }
 
     @DeleteMapping(value="/teClients/{id}")

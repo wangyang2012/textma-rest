@@ -22,4 +22,5 @@ public interface TeClientService {
 
 	List<TeClient> getSousClients(Integer id);
 
+    void updateObservations(Integer clientId, String observations);
 }
