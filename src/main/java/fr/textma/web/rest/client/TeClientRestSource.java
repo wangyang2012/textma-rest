@@ -57,7 +57,7 @@ public class TeClientRestSource {
     }
 
     @PutMapping(value = "/teClients/{clientId}/observations")
-    public String updateObservations(@PathVariable Integer clientId, @RequestBody String observations) {
+    public String updateObservations(@PathVariable Integer clientId, @RequestBody(required = false) String observations) {
         teClientService.updateObservations(clientId, observations);
         return "ok";
     }
