@@ -1,6 +1,5 @@
 package fr.textma.model;
 
-import org.hibernate.annotations.JoinColumnOrFormula;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -10,7 +9,7 @@ import java.math.BigDecimal;
 @Table(name="te_cliremise_clr")
 public class Remise {
 
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="clr_id")
     private Integer id;
 
@@ -47,7 +46,7 @@ public class Remise {
     private BigDecimal rotationPourcentage;
 
     @Column(name="clr_remiserotationprix")
-    private BigDecimal retationPrix;
+    private BigDecimal rotationPrix;
 
     public Integer getId() {
         return id;
@@ -121,12 +120,12 @@ public class Remise {
         this.rotationPourcentage = rotationPourcentage;
     }
 
-    public BigDecimal getRetationPrix() {
-        return retationPrix;
+    public BigDecimal getRotationPrix() {
+        return rotationPrix;
     }
 
-    public void setRetationPrix(BigDecimal retationPrix) {
-        this.retationPrix = retationPrix;
+    public void setRotationPrix(BigDecimal rotationPrix) {
+        this.rotationPrix = rotationPrix;
     }
 
     public String getLibelle() {

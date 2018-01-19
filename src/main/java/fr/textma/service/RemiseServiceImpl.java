@@ -155,9 +155,24 @@ public class RemiseServiceImpl implements RemiseService {
         RemiseBrut remiseBrut = remiseBrutDao.getByClientIdAndFamilleArticleIdAndCollectionArticleIdAndGammeArticleIdAndArticleId(clientId, familleId, collectionId, gammeId, articleId);
         if (remiseBrut == null) {
             remiseBrut = new RemiseBrut();
+            remiseBrut.setArticleId(articleId);
+            remiseBrut.setGammeArticleId(gammeId);
+            remiseBrut.setCollectionArticleId(collectionId);
+            remiseBrut.setFamilleArticleId(familleId);
+            remiseBrut.setClientId(clientId);
         }
 
         return remiseBrut;
+    }
+
+    @Override
+    public void saveRemiseBrut(RemiseBrut remise) {
+        remiseBrutDao.save(remise);
+    }
+
+    @Override
+    public void deleteRemise(Integer id) {
+        remiseBrutDao.delete(id);
     }
 
     // To improve: use HashMap or MapReduce for searchById

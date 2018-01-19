@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 @Table(name="te_cliremise_clr")
 public class RemiseBrut {
 
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="clr_id")
     private Integer id;
 
@@ -36,7 +36,7 @@ public class RemiseBrut {
     private BigDecimal rotationPourcentage;
 
     @Column(name="clr_remiserotationprix")
-    private BigDecimal retationPrix;
+    private BigDecimal rotationPrix;
 
     public Integer getId() {
         return id;
@@ -71,12 +71,12 @@ public class RemiseBrut {
         this.rotationPourcentage = rotationPourcentage;
     }
 
-    public BigDecimal getRetationPrix() {
-        return retationPrix;
+    public BigDecimal getRotationPrix() {
+        return rotationPrix;
     }
 
-    public void setRetationPrix(BigDecimal retationPrix) {
-        this.retationPrix = retationPrix;
+    public void setRotationPrix(BigDecimal rotationPrix) {
+        this.rotationPrix = rotationPrix;
     }
 
     public Integer getClientId() {

@@ -12,4 +12,7 @@ public interface RemiseService {
 
 	RemiseBrut getRemiseBrut(Integer clientId, String nodeId);
 
+    void saveRemiseBrut(RemiseBrut remise);
+
+	void deleteRemise(Integer id);
 }

@@ -26,4 +26,16 @@ public class RemiseSource {
     public RemiseBrut getRemisesOfClientWithNodeId(@PathVariable Integer clientId, @PathVariable String nodeId) {
         return remiseService.getRemiseBrut(clientId, nodeId);
     }
+
+    @PutMapping(value = "/remise")
+    public String saveRemise(@RequestBody RemiseBrut remise) {
+        remiseService.saveRemiseBrut(remise);
+        return "ok";
+    }
+
+    @DeleteMapping(value = "/remise/{id}")
+    public String deleteRemise(@PathVariable Integer id) {
+        remiseService.deleteRemise(id);
+        return "ok";
+    }
 }
