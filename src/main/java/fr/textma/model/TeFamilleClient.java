@@ -1,21 +1,25 @@
 package fr.textma.model;
 
+import org.hibernate.annotations.Formula;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="te_clifamille_clf")
+@Table(name = "te_clifamille_clf")
 public class TeFamilleClient {
 
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="clf_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "clf_id")
     private Integer id;
 
-    @Column(name="clf_nom")
+    @Column(name = "clf_nom")
     private String nom;
 
-    @OneToMany(mappedBy = "famille", cascade = CascadeType.ALL)
-    private List<TeClient> clients;
+    @Formula("(select COALESCE(count(*), 0) from te_client_cli cli where cli.cli_clf_id=clf_id )")
+    private Integer nbClients;
+
 
     public Integer getId() {
         return id;
@@ -36,16 +40,16 @@ public class TeFamilleClient {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
     public void setValue(String nom) {
         this.nom = nom;
     }
 
-    public List<TeClient> getClients() {
-        return clients;
+    public Integer getNbClients() {
+        return nbClients;
     }
 
-    public void setClients(List<TeClient> clients) {
-        this.clients = clients;
+    public void setNbClients(Integer nbClients) {
+        this.nbClients = nbClients;
     }
-
 }

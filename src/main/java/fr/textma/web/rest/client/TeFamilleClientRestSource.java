@@ -33,6 +33,25 @@ public class TeFamilleClientRestSource {
         return new WebixDatatableResponse<TeFamilleClient>(familleClients, start);
     }
 
+
+    @GetMapping(value = "/teFamilleClients/{id}")
+    public TeFamilleClient getById(@PathVariable Integer id) {
+        return service.findById(id);
+    }
+
+    @PutMapping(value = "/teFamilleClients")
+    public String save(@RequestBody TeFamilleClient familleClient) {
+        service.save(familleClient);
+        return "ok";
+    }
+
+
+    @DeleteMapping(value = "/teFamilleClients/{id}")
+    public String delete(@PathVariable Integer id) {
+        service.delete(id);
+        return "ok";
+    }
+
     private Sort getSortInfo(@RequestParam(required = false) Map<String, String> filter) {
 
         String id = filter.get("sort[id]");
