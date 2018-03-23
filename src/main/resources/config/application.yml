@@ -37,9 +37,9 @@ spring:
         serialization.write_dates_as_timestamps: false
     datasource:
             type: com.zaxxer.hikari.HikariDataSource
-            url: jdbc:mysql://localhost:3306/textma?useUnicode=true&characterEncoding=utf8&useSSL=false
+            url: jdbc:mysql://localhost:3306/..................
             username: root
-            password:
+            password:......................
             hikari:
                 data-source-properties:
                     cachePrepStmts: true
